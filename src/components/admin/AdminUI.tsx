@@ -15,8 +15,8 @@ export function AdminPage({
   children,
 }: {
   title: string;
-  description?: string;
-  actions?: ReactNode;
+  description?: string | undefined;
+  actions?: ReactNode | undefined;
   children: ReactNode;
 }) {
   return (
@@ -50,11 +50,11 @@ export function Field({
   placeholder,
 }: {
   label: string;
-  hint?: string;
+  hint?: string | undefined;
   value: string;
   onChange: (value: string) => void;
-  type?: string;
-  placeholder?: string;
+  type?: string | undefined;
+  placeholder?: string | undefined;
 }) {
   return (
     <div className="space-y-1.5">
@@ -78,10 +78,10 @@ export function TextareaField({
   rows = 4,
 }: {
   label: string;
-  hint?: string;
+  hint?: string | undefined;
   value: string;
   onChange: (value: string) => void;
-  rows?: number;
+  rows?: number | undefined;
 }) {
   return (
     <div className="space-y-1.5">
@@ -120,7 +120,7 @@ export function ToggleField({
   onChange,
 }: {
   label: string;
-  hint?: string;
+  hint?: string | undefined;
   checked: boolean;
   onChange: (checked: boolean) => void;
 }) {
@@ -148,8 +148,8 @@ export function FileField({
   folder: StorageFolder;
   value: string | null;
   onChange: (value: string | null) => void;
-  accept?: string;
-  preview?: boolean;
+  accept?: string | undefined;
+  preview?: boolean | undefined;
 }) {
   const [busy, setBusy] = useState(false);
   const url = mediaUrl(value);
