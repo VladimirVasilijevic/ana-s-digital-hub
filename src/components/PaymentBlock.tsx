@@ -3,6 +3,22 @@ import { Button } from "@/components/ui/button";
 import { paymentInfo } from "@/data/products";
 import { formatPrice } from "@/lib/format";
 
+function useCopy() {
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const copy = async (id: string, text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedId(id);
+      setTimeout(() => setCopiedId((current) => (current === id ? null : current)), 2000);
+    } catch {
+      setCopiedId(null);
+    }
+  };
+
+  return { copiedId, copy };
+}
+
 export function PaymentBlock({
   price,
   purpose,
@@ -10,38 +26,50 @@ export function PaymentBlock({
   price?: { amount: number; currency: string } | undefined;
   purpose?: string | undefined;
 }) {
-  const [copied, setCopied] = useState(false);
+  const { copiedId, copy } = useCopy();
 
   const rows = [
-    { label: "Primalac", value: paymentInfo.recipient },
-    { label: "Račun", value: paymentInfo.account },
-    { label: "Banka", value: paymentInfo.bank },
-    { label: "Iznos", value: price ? formatPrice(price) : "—" },
-    { label: "Svrha uplate", value: purpose ?? paymentInfo.purpose },
+    { id: "primalac", label: "Primalac", value: paymentInfo.recipient },
+    { id: "racun", label: "Broj računa", value: paymentInfo.account },
+    { id: "banka", label: "Banka", value: paymentInfo.bank },
+    { id: "iznos", label: "Iznos", value: price ? formatPrice(price) : "—" },
+    { id: "svrha", label: "Svrha uplate", value: purpose ?? paymentInfo.purpose },
   ];
 
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(rows.map((r) => `${r.label}: ${r.value}`).join("\n"));
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
-    }
-  };
+  const allText = rows.map((r) => `${r.label}: ${r.value}`).join("\n");
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-5 shadow-soft">
-      <dl className="divide-y divide-border text-[15px]">
-        {rows.map((row) => (
-          <div key={row.label} className="flex flex-wrap justify-between gap-2 py-2">
-            <dt className="text-muted-foreground">{row.label}</dt>
-            <dd className="font-medium">{row.value}</dd>
-          </div>
-        ))}
-      </dl>
-      <Button variant="soft" size="touch" className="mt-4 w-full" onClick={copy}>
-        {copied ? "Kopirano ✓" : "Kopiraj podatke"}
+    <div className="rounded-2xl border border-border bg-card p-4 shadow-soft sm:p-5">
+      <ul className="divide-y divide-border">
+        {rows.map((row) => {
+          const isCopied = copiedId === row.id;
+          return (
+            <li key={row.id} className="flex items-center justify-between gap-3 py-3">
+              <div className="min-w-0">
+                <p className="text-xs text-muted-foreground">{row.label}</p>
+                <p className="truncate text-[15px] font-medium">{row.value}</p>
+              </div>
+              <Button
+                variant="quiet"
+                size="sm"
+                className="h-10 shrink-0 px-3 text-xs"
+                aria-label={`Kopiraj: ${row.label}`}
+                onClick={() => copy(row.id, row.value)}
+              >
+                {isCopied ? "Kopirano ✓" : "Kopiraj"}
+              </Button>
+            </li>
+          );
+        })}
+      </ul>
+
+      <Button
+        variant="soft"
+        size="touch"
+        className="mt-4 w-full"
+        onClick={() => copy("all", allText)}
+      >
+        {copiedId === "all" ? "Kopirano ✓" : "Kopiraj sve podatke"}
       </Button>
       <p className="mt-3 text-xs text-muted-foreground">
         Podaci za uplatu su privremeni dok ne budu potvrđeni.
