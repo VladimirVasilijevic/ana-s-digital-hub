@@ -1,0 +1,89 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
+import { AdminPage, Card, EmptyState, RowActions } from "@/components/admin/AdminUI";
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { listFreeResources, setFreeResourceActive, deleteFreeResource } from "@/services/freeContent";
+import { mediaUrl } from "@/lib/media-url";
+
+export const Route = createFileRoute("/_authenticated/admin/besplatno/")({
+  component: FreeList,
+});
+
+function FreeList() {
+  const queryClient = useQueryClient();
+  const { data: items, isLoading } = useQuery({
+    queryKey: ["admin", "free"],
+    queryFn: listFreeResources,
+  });
+
+  const invalidate = () => queryClient.invalidateQueries({ queryKey: ["admin", "free"] });
+
+  const toggle = useMutation({
+    mutationFn: ({ id, active }: { id: string; active: boolean }) => setFreeResourceActive(id, active),
+    onSuccess: () => { toast.success("Sačuvano ✓"); invalidate(); },
+    onError: (e: Error) => toast.error(e.message),
+  });
+
+  const remove = useMutation({
+    mutationFn: (id: string) => deleteFreeResource(id),
+    onSuccess: () => { toast.success("Obrisano."); invalidate(); },
+    onError: (e: Error) => toast.error(e.message),
+  });
+
+  return (
+    <AdminPage
+      title="Besplatni sadržaj"
+      description="Materijali koje roditelji preuzimaju besplatno."
+      actions={
+        <Button asChild variant="hero" size="touch">
+          <Link to="/admin/besplatno/novi">Novi materijal</Link>
+        </Button>
+      }
+    >
+      {isLoading ? (
+        <EmptyState text="Učitavanje…" />
+      ) : !items?.length ? (
+        <EmptyState text="Još nema materijala." />
+      ) : (
+        <ul className="space-y-3">
+          {items.map((item) => (
+            <li key={item.id}>
+              <Card>
+                <div className="flex gap-4">
+                  {mediaUrl(item.image_url) ? (
+                    <img src={mediaUrl(item.image_url)} alt="" className="h-16 w-20 shrink-0 rounded-lg object-cover" />
+                  ) : null}
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-[15px] font-semibold">{item.title}</p>
+                    <p className="truncate text-sm text-muted-foreground">
+                      {item.file_url ? "Fajl za preuzimanje" : item.external_url ? "Spoljni link" : "Bez linka"}
+                    </p>
+                  </div>
+                </div>
+                <RowActions>
+                  <div className="mt-3 flex items-center gap-2">
+                    <Switch checked={item.is_active} onCheckedChange={(active) => toggle.mutate({ id: item.id, active })} />
+                    <span className="text-sm text-muted-foreground">{item.is_active ? "Vidljivo" : "Sakriveno"}</span>
+                  </div>
+                  <Button asChild variant="quiet" size="sm" className="mt-3">
+                    <Link to="/admin/besplatno/$id" params={{ id: item.id }}>Izmeni</Link>
+                  </Button>
+                  <Button
+                    variant="quiet"
+                    size="sm"
+                    className="mt-3 text-destructive"
+                    onClick={() => { if (confirm(`Obrisati „${item.title}“?`)) remove.mutate(item.id); }}
+                  >
+                    Obriši
+                  </Button>
+                </RowActions>
+              </Card>
+            </li>
+          ))}
+        </ul>
+      )}
+    </AdminPage>
+  );
+}
