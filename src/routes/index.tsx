@@ -47,6 +47,7 @@ function Home() {
   const products = getProducts();
   const freeMaterials = getFreeMaterials();
   const media = getMediaAppearances();
+  const activeWebinar = getActiveWebinar();
 
   return (
     <main>
