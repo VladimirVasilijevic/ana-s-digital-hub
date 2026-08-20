@@ -1,7 +1,5 @@
 import freeGuide from "@/assets/free-guide.jpg";
-import freeWebinar from "@/assets/free-webinar.jpg";
 import freeMaterijal from "@/assets/free-materijal.jpg";
-import { contact } from "./contact";
 
 export type FreeMaterial = {
   id: string;
@@ -41,21 +39,10 @@ export const freeMaterials: FreeMaterial[] = [
     kind: "download",
     meta: "PDF za štampu · primer",
     cta: {
-      label: "Preuzmi →",
+      label: "Preuzmi besplatno →",
       href: "/files/materijal-za-roditelje.pdf",
       fileName: "materijal-za-roditelje.pdf",
     },
-    enabled: true,
-  },
-  {
-    id: "besplatan-webinar",
-    title: "Besplatan webinar",
-    description:
-      "Online druženje za roditelje: pitanja, odgovori i konkretni primeri iz svakodnevice.",
-    image: freeWebinar,
-    kind: "link",
-    meta: "Online · uživo",
-    cta: { label: "Prijavi se →", href: `mailto:${contact.email}?subject=Prijava%20za%20webinar` },
     enabled: true,
   },
 ];
