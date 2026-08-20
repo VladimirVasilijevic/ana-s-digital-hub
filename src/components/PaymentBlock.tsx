@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { paymentInfo } from "@/data/products";
+import { useGlobalContent } from "@/lib/site-data";
 import { formatPrice } from "@/lib/format";
 
 function useCopy() {
@@ -27,14 +27,15 @@ export function PaymentBlock({
   purpose?: string | undefined;
 }) {
   const { copiedId, copy } = useCopy();
+  const { payment } = useGlobalContent();
 
   const rows = [
-    { id: "primalac", label: "Primalac", value: paymentInfo.recipient },
-    { id: "racun", label: "Broj računa", value: paymentInfo.account },
-    { id: "banka", label: "Banka", value: paymentInfo.bank },
+    { id: "primalac", label: "Primalac", value: payment?.recipient ?? "—" },
+    { id: "racun", label: "Broj računa", value: payment?.account ?? "—" },
+    { id: "banka", label: "Banka", value: payment?.bank ?? "—" },
     { id: "iznos", label: "Iznos", value: price ? formatPrice(price) : "—" },
-    { id: "svrha", label: "Svrha uplate", value: purpose ?? paymentInfo.purpose },
-  ];
+    { id: "svrha", label: "Svrha uplate", value: purpose ?? "Uplata" },
+  ].filter((row) => row.value && row.value !== "—" ? true : row.id === "iznos" || row.id === "svrha");
 
   const allText = rows.map((r) => `${r.label}: ${r.value}`).join("\n");
 
@@ -71,9 +72,9 @@ export function PaymentBlock({
       >
         {copiedId === "all" ? "Kopirano ✓" : "Kopiraj sve podatke"}
       </Button>
-      <p className="mt-3 text-xs text-muted-foreground">
-        Podaci za uplatu su privremeni dok ne budu potvrđeni.
-      </p>
+      {payment?.note ? (
+        <p className="mt-3 text-xs text-muted-foreground">{payment.note}</p>
+      ) : null}
     </div>
   );
 }

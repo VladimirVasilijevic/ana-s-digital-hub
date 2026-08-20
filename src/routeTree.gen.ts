@@ -10,14 +10,29 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as KonsultacijeRouteImport } from './routes/konsultacije'
 import { Route as PolitikaPrivatnostiRouteImport } from './routes/politika-privatnosti'
 import { Route as UsloviKoriscenjaRouteImport } from './routes/uslovi-koriscenja'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as PrirucnikSlugRouteImport } from './routes/prirucnik.$slug'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminProizvodiIndexRouteImport } from './routes/_authenticated/admin.proizvodi.index'
+import { Route as ApiPublicFileSplatRouteImport } from './routes/api/public/file.$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KonsultacijeRoute = KonsultacijeRouteImport.update({
@@ -35,64 +50,118 @@ const UsloviKoriscenjaRoute = UsloviKoriscenjaRouteImport.update({
   path: '/uslovi-koriscenja',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const PrirucnikSlugRoute = PrirucnikSlugRouteImport.update({
   id: '/prirucnik/$slug',
   path: '/prirucnik/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminProizvodiIndexRoute =
+  AuthenticatedAdminProizvodiIndexRouteImport.update({
+    id: '/proizvodi/',
+    path: '/proizvodi/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const ApiPublicFileSplatRoute = ApiPublicFileSplatRouteImport.update({
+  id: '/api/public/file/$',
+  path: '/api/public/file/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/konsultacije': typeof KonsultacijeRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/api/public/file/$': typeof ApiPublicFileSplatRoute
+  '/admin/proizvodi/': typeof AuthenticatedAdminProizvodiIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/konsultacije': typeof KonsultacijeRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
+  '/api/public/file/$': typeof ApiPublicFileSplatRoute
+  '/admin/proizvodi': typeof AuthenticatedAdminProizvodiIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
   '/konsultacije': typeof KonsultacijeRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/api/public/file/$': typeof ApiPublicFileSplatRoute
+  '/_authenticated/admin/proizvodi/': typeof AuthenticatedAdminProizvodiIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/konsultacije'
     | '/politika-privatnosti'
     | '/uslovi-koriscenja'
+    | '/admin'
     | '/prirucnik/$slug'
+    | '/admin/'
+    | '/api/public/file/$'
+    | '/admin/proizvodi/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/konsultacije'
     | '/politika-privatnosti'
     | '/uslovi-koriscenja'
     | '/prirucnik/$slug'
+    | '/admin'
+    | '/api/public/file/$'
+    | '/admin/proizvodi'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
+    | '/auth'
     | '/konsultacije'
     | '/politika-privatnosti'
     | '/uslovi-koriscenja'
+    | '/_authenticated/admin'
     | '/prirucnik/$slug'
+    | '/_authenticated/admin/'
+    | '/api/public/file/$'
+    | '/_authenticated/admin/proizvodi/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
   KonsultacijeRoute: typeof KonsultacijeRoute
   PolitikaPrivatnostiRoute: typeof PolitikaPrivatnostiRoute
   UsloviKoriscenjaRoute: typeof UsloviKoriscenjaRoute
   PrirucnikSlugRoute: typeof PrirucnikSlugRoute
+  ApiPublicFileSplatRoute: typeof ApiPublicFileSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -102,6 +171,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/konsultacije': {
@@ -125,6 +208,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UsloviKoriscenjaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/prirucnik/$slug': {
       id: '/prirucnik/$slug'
       path: '/prirucnik/$slug'
@@ -132,15 +222,63 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrirucnikSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/proizvodi/': {
+      id: '/_authenticated/admin/proizvodi/'
+      path: '/proizvodi'
+      fullPath: '/admin/proizvodi/'
+      preLoaderRoute: typeof AuthenticatedAdminProizvodiIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/api/public/file/$': {
+      id: '/api/public/file/$'
+      path: '/api/public/file/$'
+      fullPath: '/api/public/file/$'
+      preLoaderRoute: typeof ApiPublicFileSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminProizvodiIndexRoute: typeof AuthenticatedAdminProizvodiIndexRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminProizvodiIndexRoute: AuthenticatedAdminProizvodiIndexRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
   KonsultacijeRoute: KonsultacijeRoute,
   PolitikaPrivatnostiRoute: PolitikaPrivatnostiRoute,
   UsloviKoriscenjaRoute: UsloviKoriscenjaRoute,
   PrirucnikSlugRoute: PrirucnikSlugRoute,
+  ApiPublicFileSplatRoute: ApiPublicFileSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
