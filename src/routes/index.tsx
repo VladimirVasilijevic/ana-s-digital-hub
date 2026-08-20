@@ -5,6 +5,8 @@ import { Section } from "@/components/Section";
 import { ProductCard } from "@/components/ProductCard";
 import { ResourceCard } from "@/components/ResourceCard";
 import { ContactLinks } from "@/components/ContactLinks";
+import { MediaCard } from "@/components/MediaCard";
+
 import { site } from "@/data/site";
 import { getProducts } from "@/data/products";
 import { getFreeMaterials } from "@/data/free-materials";
@@ -147,34 +149,16 @@ function Home() {
       </Section>
 
       {/* MEDIA / TRUST */}
-      <Section id="mediji" title="Gde ste me mogli videti?">
+      <Section
+        id="mediji"
+        title="Gde ste me mogli videti?"
+        subtitle="Gostovanja i razgovori — klik otvara video na YouTube-u."
+      >
         {media.length > 0 ? (
-          <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {media.map((item) => (
-              <li
-                key={item.id}
-                className="rounded-xl border border-border bg-card p-4 text-center text-sm"
-              >
-                {item.image ? (
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    loading="lazy"
-                    className="mx-auto mb-2 h-10 object-contain"
-                  />
-                ) : null}
-                {item.url ? (
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-primary"
-                  >
-                    {item.name}
-                  </a>
-                ) : (
-                  item.name
-                )}
+              <li key={item.id} className="h-full">
+                <MediaCard item={item} />
               </li>
             ))}
           </ul>
@@ -184,6 +168,7 @@ function Home() {
           </p>
         )}
       </Section>
+
 
       {/* CONTACT & SOCIAL */}
       <Section id="kontakt" tone="muted" title="Pratimo se i tamo 👋">

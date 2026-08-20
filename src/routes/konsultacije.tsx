@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ContactLinks } from "@/components/ContactLinks";
 import { Button } from "@/components/ui/button";
+import { services } from "@/data/contact";
+
 
 const description =
   "Individualne konsultacije sa Anom Vaspitač — razgovor jedan na jedan i konkretni koraci za situaciju sa tvojim detetom.";
@@ -34,14 +36,24 @@ function Konsultacije() {
 
       <h2 className="mt-8 text-xl">Kako da zakažeš?</h2>
       <ol className="mt-3 space-y-2 text-[15px] leading-relaxed text-muted-foreground">
-        <li>1. Javi se preko WhatsApp-a ili Instagrama.</li>
+        <li>1. Popuni kratku prijavu preko forme.</li>
         <li>2. Ukratko opiši situaciju.</li>
-        <li>3. Dogovaramo termin razgovora.</li>
+        <li>3. Ana ti se javlja sa predlogom termina.</li>
       </ol>
 
-      <div className="mt-6">
+      <Button asChild variant="hero" size="touchLg" className="mt-6 w-full sm:w-auto">
+        <a href={services.consultationFormUrl} target="_blank" rel="noopener noreferrer">
+          Zakaži konsultacije →
+        </a>
+      </Button>
+
+      <p className="mt-8 text-[15px] text-muted-foreground">
+        Ili mi se javi direktno:
+      </p>
+      <div className="mt-3">
         <ContactLinks only={["whatsapp", "instagram", "viber", "email"]} />
       </div>
     </main>
   );
 }
+
