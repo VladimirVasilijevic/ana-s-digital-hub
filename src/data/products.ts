@@ -1,4 +1,6 @@
 import productGranice from "@/assets/product-granice.jpg";
+import productIgra from "@/assets/product-igra.jpg";
+
 
 /**
  * Product catalogue. Add new digital guides, workshops, webinars or
@@ -60,6 +62,31 @@ export const products: Product[] = [
     enabled: true,
   },
   {
+    slug: "5-minuta-igre",
+    kind: "pdf",
+    title: "5 minuta igre",
+    shortDescription:
+      "Kratke ideje za igru koje staju u pet minuta — za dane kada nema vremena, a povezanost je potrebna.",
+    problem:
+      "Dan prođe u obavezama i uveče ostane osećaj da niste stigli da se stvarno igrate. Pet minuta pune pažnje je dovoljno da dete oseti da ste tu.",
+    includes: [
+      "PDF sa idejama za igru od pet minuta",
+      "Aktivnosti bez posebnog materijala",
+      "Predlozi za jutro, popodne i pred spavanje",
+    ],
+    learn: [
+      "Kako da se povežeš sa detetom i kada je dan pretrpan",
+      "Kako da igra ostane kratka, a da ipak „radi“",
+      "Šta da radiš kada dete ne želi da prekine igru",
+    ],
+    price: { amount: 990, currency: "RSD" },
+    image: productIgra,
+    cta: { label: "Pogledaj priručnik →", to: "/prirucnik/5-minuta-igre" },
+    deliveredManually: true,
+    testimonials: [],
+    enabled: true,
+  },
+  {
     slug: "individualne-konsultacije",
     kind: "consultation",
     emoji: "💬",
@@ -69,6 +96,7 @@ export const products: Product[] = [
     cta: { label: "Zakaži konsultacije →", to: "/konsultacije" },
     enabled: true,
   },
+
 ];
 
 export const getProducts = () => products.filter((p) => p.enabled);
@@ -81,5 +109,6 @@ export const paymentInfo = {
   recipient: "Ana Vaspitač",
   account: "205-0000000000000-00", // placeholder
   bank: "Banka (placeholder)",
-  purpose: "Priručnik — Postavi granice bez svađe",
+  purpose: "Priručnik",
 };
+
