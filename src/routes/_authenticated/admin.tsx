@@ -6,14 +6,14 @@ import logo from "@/assets/logo.png";
 
 const NAV = [
   { to: "/admin", label: "Pregled", exact: true },
-  { to: "/admin/proizvodi", label: "Proizvodi" },
-  { to: "/admin/konsultacije", label: "Konsultacije" },
-  { to: "/admin/besplatno", label: "Besplatni sadržaj" },
-  { to: "/admin/webinari", label: "Webinari" },
-  { to: "/admin/mediji", label: "Gostovanja" },
-  { to: "/admin/podesavanja", label: "Kontakt i uplata" },
-  { to: "/admin/tekstovi", label: "Tekstovi" },
-  { to: "/admin/nalog", label: "Nalog" },
+  { to: "/admin/proizvodi", label: "Proizvodi", exact: false },
+  { to: "/admin/konsultacije", label: "Konsultacije", exact: false },
+  { to: "/admin/besplatno", label: "Besplatni sadržaj", exact: false },
+  { to: "/admin/webinari", label: "Webinari", exact: false },
+  { to: "/admin/mediji", label: "Gostovanja", exact: false },
+  { to: "/admin/podesavanja", label: "Kontakt i uplata", exact: false },
+  { to: "/admin/tekstovi", label: "Tekstovi", exact: false },
+  { to: "/admin/nalog", label: "Nalog", exact: false },
 ] as const;
 
 export const Route = createFileRoute("/_authenticated/admin")({
