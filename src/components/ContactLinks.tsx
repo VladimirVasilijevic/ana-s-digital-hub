@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { contactChannels } from "@/data/contact";
+import { buildContactChannels, useGlobalContent } from "@/lib/site-data";
 
 export function ContactLinks({
   only,
@@ -8,9 +8,8 @@ export function ContactLinks({
   only?: string[];
   variant?: "quiet" | "soft" | "hero";
 }) {
-  const channels = contactChannels.filter(
-    (c) => c.enabled && (!only || only.includes(c.id)),
-  );
+  const { contact } = useGlobalContent();
+  const channels = buildContactChannels(contact).filter((c) => !only || only.includes(c.id));
 
   return (
     <ul className="grid gap-3 sm:grid-cols-2">
