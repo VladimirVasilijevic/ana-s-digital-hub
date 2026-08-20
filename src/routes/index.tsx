@@ -68,6 +68,7 @@ function Home() {
                   Priručnik „Postavi granice bez svađe“
                 </Link>
               </Button>
+
               <Button asChild variant="quiet" size="touchLg" className="w-full sm:w-auto">
                 <Link to="/konsultacije">Konsultacije sa Anom</Link>
               </Button>
@@ -94,13 +95,14 @@ function Home() {
       <Section id="o-meni" tone="muted">
         <div className="grid items-center gap-6 md:grid-cols-[1fr_1.2fr]">
           <img
-            src={site.hero.image}
-            alt="Ana u radu sa detetom (privremena ilustracija)"
+            src={site.about.image}
+            alt={site.about.imageAlt}
             loading="lazy"
-            width={1024}
-            height={1024}
+            width={768}
+            height={896}
             className="mx-auto w-40 rounded-2xl object-cover sm:w-52 md:w-full md:max-w-xs"
           />
+
           <div>
             <h2 className="text-2xl sm:text-3xl">{site.about.title}</h2>
             <div className="mt-3 space-y-2 text-[15px] leading-relaxed text-muted-foreground">

@@ -54,6 +54,7 @@ export const products: Product[] = [
     price: { amount: 1490, currency: "RSD" },
     image: productGranice,
     cta: { label: "Pogledaj priručnik →", to: "/prirucnik/postavi-granice-bez-svadje" },
+
     deliveredManually: true,
     testimonials: [],
     enabled: true,

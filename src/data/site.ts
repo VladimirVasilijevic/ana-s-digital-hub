@@ -1,4 +1,5 @@
 import anaPortrait from "@/assets/ana-portrait.jpg";
+import anaAbout from "@/assets/ana-about.jpg";
 import { contact } from "./contact";
 
 export const site = {
@@ -11,6 +12,8 @@ export const site = {
     imageAlt: "Ilustracija Ane kako radi kreativnu aktivnost sa detetom (privremena ilustracija)",
   },
   about: {
+    image: anaAbout,
+    imageAlt: "Ilustrovani portret vaspitačice Ane sa dečjim radovima (privremena ilustracija)",
     title: "Zdravo, ja sam Ana! 👋",
     paragraphs: [
       "Vaspitačica sam i mama, i svakodnevno radim sa decom predškolskog uzrasta.",

@@ -34,8 +34,9 @@ export function ProductCard({ product }: { product: Product }) {
         <div className="pt-1">
           {cta.to ? (
             <Button asChild variant="hero" size="touch" className="w-full sm:w-auto">
-              <Link to={cta.to}>{cta.label}</Link>
+              <Link to={cta.to as "/"}>{cta.label}</Link>
             </Button>
+
           ) : (
             <Button asChild variant="hero" size="touch" className="w-full sm:w-auto">
               <a href={cta.href} target="_blank" rel="noopener noreferrer">

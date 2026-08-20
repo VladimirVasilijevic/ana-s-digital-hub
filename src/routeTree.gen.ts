@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as KonsultacijeRouteImport } from './routes/konsultacije'
 import { Route as PolitikaPrivatnostiRouteImport } from './routes/politika-privatnosti'
 import { Route as UsloviKoriscenjaRouteImport } from './routes/uslovi-koriscenja'
+import { Route as PrirucnikSlugRouteImport } from './routes/prirucnik.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const UsloviKoriscenjaRoute = UsloviKoriscenjaRouteImport.update({
   path: '/uslovi-koriscenja',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrirucnikSlugRoute = PrirucnikSlugRouteImport.update({
+  id: '/prirucnik/$slug',
+  path: '/prirucnik/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/konsultacije': typeof KonsultacijeRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
+  '/prirucnik/$slug': typeof PrirucnikSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/konsultacije': typeof KonsultacijeRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
+  '/prirucnik/$slug': typeof PrirucnikSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,19 +61,30 @@ export interface FileRoutesById {
   '/konsultacije': typeof KonsultacijeRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
+  '/prirucnik/$slug': typeof PrirucnikSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/konsultacije' | '/politika-privatnosti' | '/uslovi-koriscenja'
+    | '/'
+    | '/konsultacije'
+    | '/politika-privatnosti'
+    | '/uslovi-koriscenja'
+    | '/prirucnik/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/konsultacije' | '/politika-privatnosti' | '/uslovi-koriscenja'
+  to:
+    | '/'
+    | '/konsultacije'
+    | '/politika-privatnosti'
+    | '/uslovi-koriscenja'
+    | '/prirucnik/$slug'
   id:
     | '__root__'
     | '/'
     | '/konsultacije'
     | '/politika-privatnosti'
     | '/uslovi-koriscenja'
+    | '/prirucnik/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -73,6 +92,7 @@ export interface RootRouteChildren {
   KonsultacijeRoute: typeof KonsultacijeRoute
   PolitikaPrivatnostiRoute: typeof PolitikaPrivatnostiRoute
   UsloviKoriscenjaRoute: typeof UsloviKoriscenjaRoute
+  PrirucnikSlugRoute: typeof PrirucnikSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -105,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UsloviKoriscenjaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/prirucnik/$slug': {
+      id: '/prirucnik/$slug'
+      path: '/prirucnik/$slug'
+      fullPath: '/prirucnik/$slug'
+      preLoaderRoute: typeof PrirucnikSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -113,6 +140,7 @@ const rootRouteChildren: RootRouteChildren = {
   KonsultacijeRoute: KonsultacijeRoute,
   PolitikaPrivatnostiRoute: PolitikaPrivatnostiRoute,
   UsloviKoriscenjaRoute: UsloviKoriscenjaRoute,
+  PrirucnikSlugRoute: PrirucnikSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
