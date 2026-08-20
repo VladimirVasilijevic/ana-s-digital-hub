@@ -1,11 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ContactLinks } from "@/components/ContactLinks";
 import { Button } from "@/components/ui/button";
-import { services } from "@/data/contact";
-
+import { ConsultationBlock } from "@/components/ConsultationBlock";
 
 const description =
-  "Individualne konsultacije sa Anom Vaspitač — razgovor jedan na jedan i konkretni koraci za situaciju sa tvojim detetom.";
+  "Individualne konsultacije sa Anom Vaspitač — razgovor jedan na jedan, konkretni koraci i jasno uputstvo za uplatu.";
 
 export const Route = createFileRoute("/konsultacije")({
   head: () => ({
@@ -24,7 +22,7 @@ export const Route = createFileRoute("/konsultacije")({
 
 function Konsultacije() {
   return (
-    <main className="mx-auto w-full max-w-2xl px-5 py-12">
+    <main className="mx-auto w-full max-w-3xl px-5 py-12">
       <Button asChild variant="link" className="mb-4 h-auto p-0 text-sm">
         <Link to="/">← Nazad na početnu</Link>
       </Button>
@@ -34,24 +32,8 @@ function Konsultacije() {
         koji možeš da primeniš odmah, u svojoj svakodnevici.
       </p>
 
-      <h2 className="mt-8 text-xl">Kako da zakažeš?</h2>
-      <ol className="mt-3 space-y-2 text-[15px] leading-relaxed text-muted-foreground">
-        <li>1. Popuni kratku prijavu preko forme.</li>
-        <li>2. Ukratko opiši situaciju.</li>
-        <li>3. Ana ti se javlja sa predlogom termina.</li>
-      </ol>
-
-      <Button asChild variant="hero" size="touchLg" className="mt-6 w-full sm:w-auto">
-        <a href={services.consultationFormUrl} target="_blank" rel="noopener noreferrer">
-          Zakaži konsultacije →
-        </a>
-      </Button>
-
-      <p className="mt-8 text-[15px] text-muted-foreground">
-        Ili mi se javi direktno:
-      </p>
-      <div className="mt-3">
-        <ContactLinks only={["whatsapp", "instagram", "viber", "email"]} />
+      <div className="mt-8">
+        <ConsultationBlock />
       </div>
     </main>
   );
