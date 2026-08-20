@@ -6,7 +6,6 @@ import { ProductCard } from "@/components/ProductCard";
 import { ResourceCard } from "@/components/ResourceCard";
 import { ContactLinks } from "@/components/ContactLinks";
 import { MediaCard } from "@/components/MediaCard";
-import { ConsultationBlock } from "@/components/ConsultationBlock";
 
 import { site } from "@/data/site";
 import { getProducts } from "@/data/products";
