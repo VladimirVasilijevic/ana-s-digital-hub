@@ -6,11 +6,13 @@ import { ProductCard } from "@/components/ProductCard";
 import { ResourceCard } from "@/components/ResourceCard";
 import { ContactLinks } from "@/components/ContactLinks";
 import { MediaCard } from "@/components/MediaCard";
+import { ConsultationBlock } from "@/components/ConsultationBlock";
 
 import { site } from "@/data/site";
 import { getProducts } from "@/data/products";
 import { getFreeMaterials } from "@/data/free-materials";
 import { getMediaAppearances } from "@/data/media";
+import { getActiveWebinar } from "@/data/webinar";
 import { contact } from "@/data/contact";
 
 export const Route = createFileRoute("/")({
@@ -146,6 +148,20 @@ function Home() {
         </div>
       </Section>
 
+      {/* CONSULTATIONS */}
+      <Section
+        id="konsultacije"
+        tone="muted"
+        title="💬 Individualne konsultacije"
+        subtitle="Razgovor jedan na jedan o konkretnoj situaciji sa tvojim detetom — i plan koji možeš da primeniš odmah."
+      >
+        <ConsultationBlock />
+        <Button asChild variant="link" className="mt-5 h-auto p-0 text-[15px] font-semibold">
+          <Link to="/konsultacije">Detaljnije o konsultacijama →</Link>
+        </Button>
+      </Section>
+
+
       {/* FREE RESOURCES */}
       <Section
         id="besplatno"
@@ -159,6 +175,40 @@ function Home() {
           ))}
         </div>
       </Section>
+
+      {/* WEBINAR */}
+      <Section
+        id="webinar"
+        title="Webinar"
+        subtitle={activeWebinar ? activeWebinar.description : undefined}
+      >
+        {activeWebinar ? (
+          <div className="rounded-2xl border border-border bg-card p-5 shadow-soft">
+            <h3 className="text-lg font-semibold">{activeWebinar.title}</h3>
+            {activeWebinar.when ? (
+              <p className="mt-1 text-[15px] text-muted-foreground">{activeWebinar.when}</p>
+            ) : null}
+            <Button asChild variant="hero" size="touchLg" className="mt-4 w-full sm:w-auto">
+              <a href={activeWebinar.registrationUrl} target="_blank" rel="noopener noreferrer">
+                Prijavi se na webinar →
+              </a>
+            </Button>
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-dashed border-border bg-card p-5">
+            <p className="text-[15px] font-medium">Trenutno nema aktivnih webinara.</p>
+            <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+              Pratite Anu na Instagramu kako biste saznali kada bude najavljen novi webinar.
+            </p>
+            <Button asChild variant="soft" size="touch" className="mt-4 w-full sm:w-auto">
+              <a href={contact.instagramUrl} target="_blank" rel="noopener noreferrer">
+                Prati na Instagramu →
+              </a>
+            </Button>
+          </div>
+        )}
+      </Section>
+
 
       {/* MEDIA / TRUST */}
       <Section
