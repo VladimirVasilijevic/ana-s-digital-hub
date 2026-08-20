@@ -24,37 +24,43 @@ export function ConsultationBlock({ consultation }: { consultation: Consultation
       : undefined;
 
   return (
-    <div className="grid gap-6 md:grid-cols-2">
-      <div>
-        <h3 className="text-lg font-semibold">Kako da zakažeš?</h3>
-        <ol className="mt-3 space-y-2 text-[15px] leading-relaxed text-muted-foreground">
-          {steps.map((step, index) => (
-            <li key={step}>
-              {index + 1}. {step}
-            </li>
-          ))}
-        </ol>
+    <div>
+      <h3 className="text-lg font-semibold">Kako da zakažeš?</h3>
 
-        {consultation?.form_url ? (
-          <Button asChild variant="hero" size="touchLg" className="mt-5 w-full">
-            <a href={consultation.form_url} target="_blank" rel="noopener noreferrer">
-              Zakaži konsultacije →
-            </a>
-          </Button>
-        ) : null}
+      <ol className="mt-4 space-y-5">
+        <li>
+          <h4 className="text-base font-semibold">1. {steps[0]}</h4>
+          {consultation?.form_url ? (
+            <Button asChild variant="hero" size="touchLg" className="mt-3 w-full">
+              <a href={consultation.form_url} target="_blank" rel="noopener noreferrer">
+                Zakaži konsultacije →
+              </a>
+            </Button>
+          ) : null}
+        </li>
 
-        <p className="mt-6 text-[15px] text-muted-foreground">Potvrdu o uplati pošalji ovde:</p>
-        <div className="mt-3">
-          <ContactLinks only={["whatsapp", "viber", "email", "instagram"]} />
-        </div>
-      </div>
+        <li>
+          <h4 className="text-base font-semibold">2. Uplati iznos na račun</h4>
+          <div className="mt-3">
+            <PaymentBlock price={price} purpose={consultation?.title ?? "Konsultacije"} />
+          </div>
+        </li>
 
-      <div>
-        <h3 className="text-lg font-semibold">Informacije za uplatu</h3>
-        <div className="mt-3">
-          <PaymentBlock price={price} purpose={consultation?.title ?? "Konsultacije"} />
-        </div>
-      </div>
+        <li>
+          <h4 className="text-base font-semibold">3. Pošalji potvrdu o uplati Ani</h4>
+          <div className="mt-3">
+            <ContactLinks only={["whatsapp", "viber", "email", "instagram"]} />
+          </div>
+        </li>
+
+        <li>
+          <h4 className="text-base font-semibold">4. Ana ti javlja predlog termina</h4>
+          <p className="mt-1 text-[15px] leading-relaxed text-muted-foreground">
+            {steps[3] ?? "Ana ti javlja predlog termina."}
+          </p>
+        </li>
+      </ol>
     </div>
   );
 }
+
