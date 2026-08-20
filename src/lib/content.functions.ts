@@ -74,8 +74,6 @@ export const getProductBySlug = createServerFn({ method: "GET" })
   });
 
 export const getConsultation = createServerFn({ method: "GET" }).handler(async () => {
-  const supabase = publicClient();
   const { data } = await publicClient().from("consultation").select("*").limit(1).maybeSingle();
-  void supabase;
   return data ?? null;
 });
