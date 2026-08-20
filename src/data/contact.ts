@@ -68,3 +68,9 @@ export const contactChannels: ContactChannel[] = [
     enabled: true,
   },
 ];
+
+/** Service links (external forms, booking pages…). Centralised on purpose. */
+export const services = {
+  /** Dummy Google Form until the real one is ready. */
+  consultationFormUrl: "https://docs.google.com/forms/d/e/EXAMPLE/viewform",
+} as const;
