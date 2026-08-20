@@ -68,6 +68,7 @@ function Home() {
                   Priručnik „Postavi granice bez svađe“
                 </Link>
               </Button>
+
               <Button asChild variant="quiet" size="touchLg" className="w-full sm:w-auto">
                 <Link to="/konsultacije">Konsultacije sa Anom</Link>
               </Button>

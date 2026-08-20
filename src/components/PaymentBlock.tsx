@@ -7,8 +7,8 @@ export function PaymentBlock({
   price,
   purpose,
 }: {
-  price?: { amount: number; currency: string };
-  purpose?: string;
+  price?: { amount: number; currency: string } | undefined;
+  purpose?: string | undefined;
 }) {
   const [copied, setCopied] = useState(false);
 
