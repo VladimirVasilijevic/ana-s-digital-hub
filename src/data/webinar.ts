@@ -1,5 +1,5 @@
 /**
- * Webinar state. Kada Ana ima aktivan webinar, samo postavi `active: true`
+ * Webinar state. Kada Ana ima aktivan webinar, postavi `active: true`
  * i dodaj `registrationUrl` — UI se ne menja.
  */
 export type Webinar = {
@@ -8,7 +8,9 @@ export type Webinar = {
   /** Prijava (Google forma, Instagram post, event stranica…). */
   registrationUrl?: string;
   /** Npr. "12. septembar, 20h · online". */
-  when?: string;
+  date?: string;
+  /** Opciona ilustracija/poster webinara. */
+  image?: string;
   active: boolean;
 };
 
