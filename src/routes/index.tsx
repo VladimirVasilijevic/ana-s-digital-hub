@@ -64,20 +64,32 @@ function Home() {
               {site.tagline}
             </p>
 
-            <div className="mt-6 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap md:justify-start">
+            <nav
+              aria-label="Brza navigacija"
+              className="mt-6 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap md:justify-start"
+            >
               <Button asChild variant="hero" size="touchLg" className="w-full sm:w-auto">
-                <Link to="/prirucnik/$slug" params={{ slug: "postavi-granice-bez-svadje" }}>
-                  Priručnik „Postavi granice bez svađe“
-                </Link>
+                <a href="#ponuda">Proizvodi</a>
               </Button>
-
               <Button asChild variant="quiet" size="touchLg" className="w-full sm:w-auto">
-                <Link to="/konsultacije">Konsultacije sa Anom</Link>
+                <a href="#konsultacije">Konsultacije</a>
               </Button>
               <Button asChild variant="soft" size="touchLg" className="w-full sm:w-auto">
-                <a href="#besplatno">Besplatni sadržaji</a>
+                <a href="#besplatno">Besplatni sadržaj</a>
               </Button>
-            </div>
+              <Button asChild variant="quiet" size="touchLg" className="w-full sm:w-auto">
+                {activeWebinar ? (
+                  <a href={activeWebinar.registrationUrl} target="_blank" rel="noopener noreferrer">
+                    Webinar
+                  </a>
+                ) : (
+                  <a href="#webinar">Webinar</a>
+                )}
+              </Button>
+              <Button asChild variant="quiet" size="touchLg" className="w-full sm:w-auto">
+                <a href="#mediji">Gde ste me mogli videti?</a>
+              </Button>
+            </nav>
           </div>
 
           <div className="fade-up order-first md:order-none">
