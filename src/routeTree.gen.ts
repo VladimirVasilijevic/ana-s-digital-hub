@@ -18,6 +18,7 @@ import { Route as UsloviKoriscenjaRouteImport } from './routes/uslovi-koriscenja
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as PrirucnikSlugRouteImport } from './routes/prirucnik.$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminProizvodiIndexRouteImport } from './routes/_authenticated/admin.proizvodi.index'
 import { Route as ApiPublicFileSplatRouteImport } from './routes/api/public/file.$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -64,6 +65,12 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminProizvodiIndexRoute =
+  AuthenticatedAdminProizvodiIndexRouteImport.update({
+    id: '/proizvodi/',
+    path: '/proizvodi/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const ApiPublicFileSplatRoute = ApiPublicFileSplatRouteImport.update({
   id: '/api/public/file/$',
   path: '/api/public/file/$',
@@ -80,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/api/public/file/$': typeof ApiPublicFileSplatRoute
+  '/admin/proizvodi/': typeof AuthenticatedAdminProizvodiIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -90,6 +98,7 @@ export interface FileRoutesByTo {
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/api/public/file/$': typeof ApiPublicFileSplatRoute
+  '/admin/proizvodi': typeof AuthenticatedAdminProizvodiIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -103,6 +112,7 @@ export interface FileRoutesById {
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/api/public/file/$': typeof ApiPublicFileSplatRoute
+  '/_authenticated/admin/proizvodi/': typeof AuthenticatedAdminProizvodiIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/prirucnik/$slug'
     | '/admin/'
     | '/api/public/file/$'
+    | '/admin/proizvodi/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '/prirucnik/$slug'
     | '/admin'
     | '/api/public/file/$'
+    | '/admin/proizvodi'
   id:
     | '__root__'
     | '/'
@@ -138,6 +150,7 @@ export interface FileRouteTypes {
     | '/prirucnik/$slug'
     | '/_authenticated/admin/'
     | '/api/public/file/$'
+    | '/_authenticated/admin/proizvodi/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -216,6 +229,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/proizvodi/': {
+      id: '/_authenticated/admin/proizvodi/'
+      path: '/proizvodi'
+      fullPath: '/admin/proizvodi/'
+      preLoaderRoute: typeof AuthenticatedAdminProizvodiIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/api/public/file/$': {
       id: '/api/public/file/$'
       path: '/api/public/file/$'
@@ -228,10 +248,12 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminProizvodiIndexRoute: typeof AuthenticatedAdminProizvodiIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminProizvodiIndexRoute: AuthenticatedAdminProizvodiIndexRoute,
 }
 
 const AuthenticatedAdminRouteWithChildren =
