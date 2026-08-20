@@ -6,7 +6,6 @@ import { ProductCard } from "@/components/ProductCard";
 import { ResourceCard } from "@/components/ResourceCard";
 import { ContactLinks } from "@/components/ContactLinks";
 import { MediaCard } from "@/components/MediaCard";
-import { ConsultationBlock } from "@/components/ConsultationBlock";
 
 import { site } from "@/data/site";
 import { getProducts } from "@/data/products";
@@ -154,19 +153,22 @@ function Home() {
         id="konsultacije"
         tone="muted"
         title="💬 Individualne konsultacije"
-        subtitle="Razgovor jedan na jedan o konkretnoj situaciji sa tvojim detetom — i plan koji možeš da primeniš odmah."
+        subtitle="Razgovor jedan na jedan o konkretnoj situaciji sa tvojim detetom."
       >
-        <ConsultationBlock />
-        <Button asChild variant="link" className="mt-5 h-auto p-0 text-[15px] font-semibold">
-          <Link to="/konsultacije">Detaljnije o konsultacijama →</Link>
-        </Button>
+        <div className="rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6">
+          <p className="text-[15px] leading-relaxed text-muted-foreground">
+            Zajedno pravimo plan koji možeš da primeniš odmah. Na stranici konsultacija su svi
+            detalji: kako izgleda razgovor, cena, prijava preko forme i podaci za uplatu.
+          </p>
+          <Button asChild variant="hero" size="touch" className="mt-4 w-full sm:w-auto">
+            <Link to="/konsultacije">Saznaj više →</Link>
+          </Button>
+        </div>
       </Section>
-
 
       {/* FREE RESOURCES */}
       <Section
         id="besplatno"
-        tone="muted"
         title="Besplatno za vas 🎁"
         subtitle="Materijali koje možeš odmah da preuzmeš i primeniš."
       >
@@ -180,20 +182,33 @@ function Home() {
       {/* WEBINAR */}
       <Section
         id="webinar"
+        tone="muted"
         title="Webinar"
         {...(activeWebinar ? { subtitle: activeWebinar.description } : {})}
       >
         {activeWebinar ? (
-          <div className="rounded-2xl border border-border bg-card p-5 shadow-soft">
-            <h3 className="text-lg font-semibold">{activeWebinar.title}</h3>
-            {activeWebinar.when ? (
-              <p className="mt-1 text-[15px] text-muted-foreground">{activeWebinar.when}</p>
+          <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
+            {activeWebinar.image ? (
+              <img
+                src={activeWebinar.image}
+                alt={`Ilustracija — ${activeWebinar.title}`}
+                loading="lazy"
+                width={1024}
+                height={768}
+                className="aspect-[4/3] w-full object-cover sm:aspect-[16/7]"
+              />
             ) : null}
-            <Button asChild variant="hero" size="touchLg" className="mt-4 w-full sm:w-auto">
-              <a href={activeWebinar.registrationUrl} target="_blank" rel="noopener noreferrer">
-                Prijavi se na webinar →
-              </a>
-            </Button>
+            <div className="p-5">
+              <h3 className="text-lg font-semibold">{activeWebinar.title}</h3>
+              {activeWebinar.date ? (
+                <p className="mt-1 text-[15px] text-muted-foreground">{activeWebinar.date}</p>
+              ) : null}
+              <Button asChild variant="hero" size="touchLg" className="mt-4 w-full sm:w-auto">
+                <a href={activeWebinar.registrationUrl} target="_blank" rel="noopener noreferrer">
+                  Prijavi se →
+                </a>
+              </Button>
+            </div>
           </div>
         ) : (
           <div className="rounded-2xl border border-dashed border-border bg-card p-5">
@@ -209,6 +224,7 @@ function Home() {
           </div>
         )}
       </Section>
+
 
 
       {/* MEDIA / TRUST */}

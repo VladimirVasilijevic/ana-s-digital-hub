@@ -55,7 +55,7 @@ export const products: Product[] = [
     ],
     price: { amount: 1490, currency: "RSD" },
     image: productGranice,
-    cta: { label: "Pogledaj priručnik →", to: "/prirucnik/postavi-granice-bez-svadje" },
+    cta: { label: "Saznaj više →", to: "/prirucnik/postavi-granice-bez-svadje" },
 
     deliveredManually: true,
     testimonials: [],
@@ -81,22 +81,11 @@ export const products: Product[] = [
     ],
     price: { amount: 990, currency: "RSD" },
     image: productIgra,
-    cta: { label: "Pogledaj priručnik →", to: "/prirucnik/5-minuta-igre" },
+    cta: { label: "Saznaj više →", to: "/prirucnik/5-minuta-igre" },
     deliveredManually: true,
     testimonials: [],
     enabled: true,
   },
-  {
-    slug: "individualne-konsultacije",
-    kind: "consultation",
-    emoji: "💬",
-    title: "Individualne konsultacije",
-    shortDescription:
-      "Razgovor jedan na jedan o konkretnoj situaciji sa tvojim detetom i praktični koraci koje možeš odmah da primeniš.",
-    cta: { label: "Zakaži konsultacije →", to: "/konsultacije" },
-    enabled: true,
-  },
-
 ];
 
 export const getProducts = () => products.filter((p) => p.enabled);
