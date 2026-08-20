@@ -18,9 +18,18 @@ import { Route as UsloviKoriscenjaRouteImport } from './routes/uslovi-koriscenja
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as PrirucnikSlugRouteImport } from './routes/prirucnik.$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminBesplatnoIndexRouteImport } from './routes/_authenticated/admin.besplatno.index'
+import { Route as AuthenticatedAdminBesplatnoIdRouteImport } from './routes/_authenticated/admin.besplatno.$id'
+import { Route as AuthenticatedAdminBesplatnoNoviRouteImport } from './routes/_authenticated/admin.besplatno.novi'
+import { Route as AuthenticatedAdminMedijiIndexRouteImport } from './routes/_authenticated/admin.mediji.index'
+import { Route as AuthenticatedAdminMedijiIdRouteImport } from './routes/_authenticated/admin.mediji.$id'
+import { Route as AuthenticatedAdminMedijiNoviRouteImport } from './routes/_authenticated/admin.mediji.novi'
 import { Route as AuthenticatedAdminProizvodiIndexRouteImport } from './routes/_authenticated/admin.proizvodi.index'
 import { Route as AuthenticatedAdminProizvodiIdRouteImport } from './routes/_authenticated/admin.proizvodi.$id'
 import { Route as AuthenticatedAdminProizvodiNoviRouteImport } from './routes/_authenticated/admin.proizvodi.novi'
+import { Route as AuthenticatedAdminWebinariIndexRouteImport } from './routes/_authenticated/admin.webinari.index'
+import { Route as AuthenticatedAdminWebinariIdRouteImport } from './routes/_authenticated/admin.webinari.$id'
+import { Route as AuthenticatedAdminWebinariNoviRouteImport } from './routes/_authenticated/admin.webinari.novi'
 import { Route as ApiPublicFileSplatRouteImport } from './routes/api/public/file.$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -67,6 +76,42 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminBesplatnoIndexRoute =
+  AuthenticatedAdminBesplatnoIndexRouteImport.update({
+    id: '/besplatno/',
+    path: '/besplatno/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminBesplatnoIdRoute =
+  AuthenticatedAdminBesplatnoIdRouteImport.update({
+    id: '/besplatno/$id',
+    path: '/besplatno/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminBesplatnoNoviRoute =
+  AuthenticatedAdminBesplatnoNoviRouteImport.update({
+    id: '/besplatno/novi',
+    path: '/besplatno/novi',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminMedijiIndexRoute =
+  AuthenticatedAdminMedijiIndexRouteImport.update({
+    id: '/mediji/',
+    path: '/mediji/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminMedijiIdRoute =
+  AuthenticatedAdminMedijiIdRouteImport.update({
+    id: '/mediji/$id',
+    path: '/mediji/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminMedijiNoviRoute =
+  AuthenticatedAdminMedijiNoviRouteImport.update({
+    id: '/mediji/novi',
+    path: '/mediji/novi',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminProizvodiIndexRoute =
   AuthenticatedAdminProizvodiIndexRouteImport.update({
     id: '/proizvodi/',
@@ -85,6 +130,24 @@ const AuthenticatedAdminProizvodiNoviRoute =
     path: '/proizvodi/novi',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminWebinariIndexRoute =
+  AuthenticatedAdminWebinariIndexRouteImport.update({
+    id: '/webinari/',
+    path: '/webinari/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminWebinariIdRoute =
+  AuthenticatedAdminWebinariIdRouteImport.update({
+    id: '/webinari/$id',
+    path: '/webinari/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminWebinariNoviRoute =
+  AuthenticatedAdminWebinariNoviRouteImport.update({
+    id: '/webinari/novi',
+    path: '/webinari/novi',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const ApiPublicFileSplatRoute = ApiPublicFileSplatRouteImport.update({
   id: '/api/public/file/$',
   path: '/api/public/file/$',
@@ -100,10 +163,19 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/besplatno/$id': typeof AuthenticatedAdminBesplatnoIdRoute
+  '/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
+  '/admin/mediji/$id': typeof AuthenticatedAdminMedijiIdRoute
+  '/admin/mediji/novi': typeof AuthenticatedAdminMedijiNoviRoute
   '/admin/proizvodi/$id': typeof AuthenticatedAdminProizvodiIdRoute
   '/admin/proizvodi/novi': typeof AuthenticatedAdminProizvodiNoviRoute
+  '/admin/webinari/$id': typeof AuthenticatedAdminWebinariIdRoute
+  '/admin/webinari/novi': typeof AuthenticatedAdminWebinariNoviRoute
   '/api/public/file/$': typeof ApiPublicFileSplatRoute
+  '/admin/besplatno/': typeof AuthenticatedAdminBesplatnoIndexRoute
+  '/admin/mediji/': typeof AuthenticatedAdminMedijiIndexRoute
   '/admin/proizvodi/': typeof AuthenticatedAdminProizvodiIndexRoute
+  '/admin/webinari/': typeof AuthenticatedAdminWebinariIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -113,10 +185,19 @@ export interface FileRoutesByTo {
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/besplatno/$id': typeof AuthenticatedAdminBesplatnoIdRoute
+  '/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
+  '/admin/mediji/$id': typeof AuthenticatedAdminMedijiIdRoute
+  '/admin/mediji/novi': typeof AuthenticatedAdminMedijiNoviRoute
   '/admin/proizvodi/$id': typeof AuthenticatedAdminProizvodiIdRoute
   '/admin/proizvodi/novi': typeof AuthenticatedAdminProizvodiNoviRoute
+  '/admin/webinari/$id': typeof AuthenticatedAdminWebinariIdRoute
+  '/admin/webinari/novi': typeof AuthenticatedAdminWebinariNoviRoute
   '/api/public/file/$': typeof ApiPublicFileSplatRoute
+  '/admin/besplatno': typeof AuthenticatedAdminBesplatnoIndexRoute
+  '/admin/mediji': typeof AuthenticatedAdminMedijiIndexRoute
   '/admin/proizvodi': typeof AuthenticatedAdminProizvodiIndexRoute
+  '/admin/webinari': typeof AuthenticatedAdminWebinariIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -129,10 +210,19 @@ export interface FileRoutesById {
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/besplatno/$id': typeof AuthenticatedAdminBesplatnoIdRoute
+  '/_authenticated/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
+  '/_authenticated/admin/mediji/$id': typeof AuthenticatedAdminMedijiIdRoute
+  '/_authenticated/admin/mediji/novi': typeof AuthenticatedAdminMedijiNoviRoute
   '/_authenticated/admin/proizvodi/$id': typeof AuthenticatedAdminProizvodiIdRoute
   '/_authenticated/admin/proizvodi/novi': typeof AuthenticatedAdminProizvodiNoviRoute
+  '/_authenticated/admin/webinari/$id': typeof AuthenticatedAdminWebinariIdRoute
+  '/_authenticated/admin/webinari/novi': typeof AuthenticatedAdminWebinariNoviRoute
   '/api/public/file/$': typeof ApiPublicFileSplatRoute
+  '/_authenticated/admin/besplatno/': typeof AuthenticatedAdminBesplatnoIndexRoute
+  '/_authenticated/admin/mediji/': typeof AuthenticatedAdminMedijiIndexRoute
   '/_authenticated/admin/proizvodi/': typeof AuthenticatedAdminProizvodiIndexRoute
+  '/_authenticated/admin/webinari/': typeof AuthenticatedAdminWebinariIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -145,10 +235,19 @@ export interface FileRouteTypes {
     | '/admin'
     | '/prirucnik/$slug'
     | '/admin/'
+    | '/admin/besplatno/$id'
+    | '/admin/besplatno/novi'
+    | '/admin/mediji/$id'
+    | '/admin/mediji/novi'
     | '/admin/proizvodi/$id'
     | '/admin/proizvodi/novi'
+    | '/admin/webinari/$id'
+    | '/admin/webinari/novi'
     | '/api/public/file/$'
+    | '/admin/besplatno/'
+    | '/admin/mediji/'
     | '/admin/proizvodi/'
+    | '/admin/webinari/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -158,10 +257,19 @@ export interface FileRouteTypes {
     | '/uslovi-koriscenja'
     | '/prirucnik/$slug'
     | '/admin'
+    | '/admin/besplatno/$id'
+    | '/admin/besplatno/novi'
+    | '/admin/mediji/$id'
+    | '/admin/mediji/novi'
     | '/admin/proizvodi/$id'
     | '/admin/proizvodi/novi'
+    | '/admin/webinari/$id'
+    | '/admin/webinari/novi'
     | '/api/public/file/$'
+    | '/admin/besplatno'
+    | '/admin/mediji'
     | '/admin/proizvodi'
+    | '/admin/webinari'
   id:
     | '__root__'
     | '/'
@@ -173,10 +281,19 @@ export interface FileRouteTypes {
     | '/_authenticated/admin'
     | '/prirucnik/$slug'
     | '/_authenticated/admin/'
+    | '/_authenticated/admin/besplatno/$id'
+    | '/_authenticated/admin/besplatno/novi'
+    | '/_authenticated/admin/mediji/$id'
+    | '/_authenticated/admin/mediji/novi'
     | '/_authenticated/admin/proizvodi/$id'
     | '/_authenticated/admin/proizvodi/novi'
+    | '/_authenticated/admin/webinari/$id'
+    | '/_authenticated/admin/webinari/novi'
     | '/api/public/file/$'
+    | '/_authenticated/admin/besplatno/'
+    | '/_authenticated/admin/mediji/'
     | '/_authenticated/admin/proizvodi/'
+    | '/_authenticated/admin/webinari/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -255,6 +372,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/besplatno/': {
+      id: '/_authenticated/admin/besplatno/'
+      path: '/besplatno'
+      fullPath: '/admin/besplatno/'
+      preLoaderRoute: typeof AuthenticatedAdminBesplatnoIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/besplatno/$id': {
+      id: '/_authenticated/admin/besplatno/$id'
+      path: '/besplatno/$id'
+      fullPath: '/admin/besplatno/$id'
+      preLoaderRoute: typeof AuthenticatedAdminBesplatnoIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/besplatno/novi': {
+      id: '/_authenticated/admin/besplatno/novi'
+      path: '/besplatno/novi'
+      fullPath: '/admin/besplatno/novi'
+      preLoaderRoute: typeof AuthenticatedAdminBesplatnoNoviRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/mediji/': {
+      id: '/_authenticated/admin/mediji/'
+      path: '/mediji'
+      fullPath: '/admin/mediji/'
+      preLoaderRoute: typeof AuthenticatedAdminMedijiIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/mediji/$id': {
+      id: '/_authenticated/admin/mediji/$id'
+      path: '/mediji/$id'
+      fullPath: '/admin/mediji/$id'
+      preLoaderRoute: typeof AuthenticatedAdminMedijiIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/mediji/novi': {
+      id: '/_authenticated/admin/mediji/novi'
+      path: '/mediji/novi'
+      fullPath: '/admin/mediji/novi'
+      preLoaderRoute: typeof AuthenticatedAdminMedijiNoviRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/proizvodi/': {
       id: '/_authenticated/admin/proizvodi/'
       path: '/proizvodi'
@@ -276,6 +435,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminProizvodiNoviRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/webinari/': {
+      id: '/_authenticated/admin/webinari/'
+      path: '/webinari'
+      fullPath: '/admin/webinari/'
+      preLoaderRoute: typeof AuthenticatedAdminWebinariIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/webinari/$id': {
+      id: '/_authenticated/admin/webinari/$id'
+      path: '/webinari/$id'
+      fullPath: '/admin/webinari/$id'
+      preLoaderRoute: typeof AuthenticatedAdminWebinariIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/webinari/novi': {
+      id: '/_authenticated/admin/webinari/novi'
+      path: '/webinari/novi'
+      fullPath: '/admin/webinari/novi'
+      preLoaderRoute: typeof AuthenticatedAdminWebinariNoviRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/api/public/file/$': {
       id: '/api/public/file/$'
       path: '/api/public/file/$'
@@ -288,16 +468,34 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminBesplatnoIdRoute: typeof AuthenticatedAdminBesplatnoIdRoute
+  AuthenticatedAdminBesplatnoNoviRoute: typeof AuthenticatedAdminBesplatnoNoviRoute
+  AuthenticatedAdminMedijiIdRoute: typeof AuthenticatedAdminMedijiIdRoute
+  AuthenticatedAdminMedijiNoviRoute: typeof AuthenticatedAdminMedijiNoviRoute
   AuthenticatedAdminProizvodiIdRoute: typeof AuthenticatedAdminProizvodiIdRoute
   AuthenticatedAdminProizvodiNoviRoute: typeof AuthenticatedAdminProizvodiNoviRoute
+  AuthenticatedAdminWebinariIdRoute: typeof AuthenticatedAdminWebinariIdRoute
+  AuthenticatedAdminWebinariNoviRoute: typeof AuthenticatedAdminWebinariNoviRoute
+  AuthenticatedAdminBesplatnoIndexRoute: typeof AuthenticatedAdminBesplatnoIndexRoute
+  AuthenticatedAdminMedijiIndexRoute: typeof AuthenticatedAdminMedijiIndexRoute
   AuthenticatedAdminProizvodiIndexRoute: typeof AuthenticatedAdminProizvodiIndexRoute
+  AuthenticatedAdminWebinariIndexRoute: typeof AuthenticatedAdminWebinariIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminBesplatnoIdRoute: AuthenticatedAdminBesplatnoIdRoute,
+  AuthenticatedAdminBesplatnoNoviRoute: AuthenticatedAdminBesplatnoNoviRoute,
+  AuthenticatedAdminMedijiIdRoute: AuthenticatedAdminMedijiIdRoute,
+  AuthenticatedAdminMedijiNoviRoute: AuthenticatedAdminMedijiNoviRoute,
   AuthenticatedAdminProizvodiIdRoute: AuthenticatedAdminProizvodiIdRoute,
   AuthenticatedAdminProizvodiNoviRoute: AuthenticatedAdminProizvodiNoviRoute,
+  AuthenticatedAdminWebinariIdRoute: AuthenticatedAdminWebinariIdRoute,
+  AuthenticatedAdminWebinariNoviRoute: AuthenticatedAdminWebinariNoviRoute,
+  AuthenticatedAdminBesplatnoIndexRoute: AuthenticatedAdminBesplatnoIndexRoute,
+  AuthenticatedAdminMedijiIndexRoute: AuthenticatedAdminMedijiIndexRoute,
   AuthenticatedAdminProizvodiIndexRoute: AuthenticatedAdminProizvodiIndexRoute,
+  AuthenticatedAdminWebinariIndexRoute: AuthenticatedAdminWebinariIndexRoute,
 }
 
 const AuthenticatedAdminRouteWithChildren =
