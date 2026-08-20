@@ -1,4 +1,5 @@
 import anaPortrait from "@/assets/ana-portrait.jpg";
+import anaAbout from "@/assets/ana-about.jpg";
 import { contact } from "./contact";
 
 export const site = {
