@@ -14,13 +14,324 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admin_emails: {
+        Row: {
+          created_at: string
+          email: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+        }
+        Relationships: []
+      }
+      consultation: {
+        Row: {
+          created_at: string
+          detailed_description: string
+          form_url: string
+          how_it_works: string[]
+          id: string
+          includes: string[]
+          is_active: boolean
+          price_amount: number | null
+          price_currency: string
+          short_description: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          detailed_description?: string
+          form_url?: string
+          how_it_works?: string[]
+          id?: string
+          includes?: string[]
+          is_active?: boolean
+          price_amount?: number | null
+          price_currency?: string
+          short_description?: string
+          title?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          detailed_description?: string
+          form_url?: string
+          how_it_works?: string[]
+          id?: string
+          includes?: string[]
+          is_active?: boolean
+          price_amount?: number | null
+          price_currency?: string
+          short_description?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      contact_settings: {
+        Row: {
+          email: string
+          facebook_url: string
+          id: string
+          instagram_handle: string
+          instagram_url: string
+          location: string
+          phone: string
+          updated_at: string
+          viber_number: string
+          whatsapp_number: string
+        }
+        Insert: {
+          email?: string
+          facebook_url?: string
+          id?: string
+          instagram_handle?: string
+          instagram_url?: string
+          location?: string
+          phone?: string
+          updated_at?: string
+          viber_number?: string
+          whatsapp_number?: string
+        }
+        Update: {
+          email?: string
+          facebook_url?: string
+          id?: string
+          instagram_handle?: string
+          instagram_url?: string
+          location?: string
+          phone?: string
+          updated_at?: string
+          viber_number?: string
+          whatsapp_number?: string
+        }
+        Relationships: []
+      }
+      free_resources: {
+        Row: {
+          created_at: string
+          cta_label: string
+          description: string
+          external_url: string | null
+          file_url: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          meta: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          cta_label?: string
+          description?: string
+          external_url?: string | null
+          file_url?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          meta?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          cta_label?: string
+          description?: string
+          external_url?: string | null
+          file_url?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          meta?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      media_appearances: {
+        Row: {
+          created_at: string
+          description: string
+          id: string
+          image_url: string | null
+          is_active: boolean
+          source: string | null
+          title: string
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          source?: string | null
+          title: string
+          updated_at?: string
+          url?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          source?: string | null
+          title?: string
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      payment_settings: {
+        Row: {
+          account: string
+          bank: string
+          id: string
+          note: string
+          recipient: string
+          updated_at: string
+        }
+        Insert: {
+          account?: string
+          bank?: string
+          id?: string
+          note?: string
+          recipient?: string
+          updated_at?: string
+        }
+        Update: {
+          account?: string
+          bank?: string
+          id?: string
+          note?: string
+          recipient?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          created_at: string
+          detailed_description: string
+          id: string
+          image_url: string | null
+          includes: string[]
+          is_active: boolean
+          learn: string[]
+          price_amount: number | null
+          price_currency: string
+          purchase_instructions: string
+          short_description: string
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          detailed_description?: string
+          id?: string
+          image_url?: string | null
+          includes?: string[]
+          is_active?: boolean
+          learn?: string[]
+          price_amount?: number | null
+          price_currency?: string
+          purchase_instructions?: string
+          short_description?: string
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          detailed_description?: string
+          id?: string
+          image_url?: string | null
+          includes?: string[]
+          is_active?: boolean
+          learn?: string[]
+          price_amount?: number | null
+          price_currency?: string
+          purchase_instructions?: string
+          short_description?: string
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_content: {
+        Row: {
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value?: string
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
+      webinars: {
+        Row: {
+          created_at: string
+          description: string
+          event_date: string | null
+          event_time: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          registration_url: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          event_date?: string | null
+          event_time?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          registration_url?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          event_date?: string | null
+          event_time?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          registration_url?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
