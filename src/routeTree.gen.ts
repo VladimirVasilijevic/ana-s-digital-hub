@@ -18,6 +18,10 @@ import { Route as UsloviKoriscenjaRouteImport } from './routes/uslovi-koriscenja
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as PrirucnikSlugRouteImport } from './routes/prirucnik.$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminKonsultacijeRouteImport } from './routes/_authenticated/admin.konsultacije'
+import { Route as AuthenticatedAdminNalogRouteImport } from './routes/_authenticated/admin.nalog'
+import { Route as AuthenticatedAdminPodesavanjaRouteImport } from './routes/_authenticated/admin.podesavanja'
+import { Route as AuthenticatedAdminTekstoviRouteImport } from './routes/_authenticated/admin.tekstovi'
 import { Route as AuthenticatedAdminBesplatnoIndexRouteImport } from './routes/_authenticated/admin.besplatno.index'
 import { Route as AuthenticatedAdminBesplatnoIdRouteImport } from './routes/_authenticated/admin.besplatno.$id'
 import { Route as AuthenticatedAdminBesplatnoNoviRouteImport } from './routes/_authenticated/admin.besplatno.novi'
@@ -76,6 +80,29 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminKonsultacijeRoute =
+  AuthenticatedAdminKonsultacijeRouteImport.update({
+    id: '/konsultacije',
+    path: '/konsultacije',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminNalogRoute = AuthenticatedAdminNalogRouteImport.update({
+  id: '/nalog',
+  path: '/nalog',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminPodesavanjaRoute =
+  AuthenticatedAdminPodesavanjaRouteImport.update({
+    id: '/podesavanja',
+    path: '/podesavanja',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminTekstoviRoute =
+  AuthenticatedAdminTekstoviRouteImport.update({
+    id: '/tekstovi',
+    path: '/tekstovi',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminBesplatnoIndexRoute =
   AuthenticatedAdminBesplatnoIndexRouteImport.update({
     id: '/besplatno/',
@@ -162,6 +189,10 @@ export interface FileRoutesByFullPath {
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
+  '/admin/konsultacije': typeof AuthenticatedAdminKonsultacijeRoute
+  '/admin/nalog': typeof AuthenticatedAdminNalogRoute
+  '/admin/podesavanja': typeof AuthenticatedAdminPodesavanjaRoute
+  '/admin/tekstovi': typeof AuthenticatedAdminTekstoviRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/admin/besplatno/$id': typeof AuthenticatedAdminBesplatnoIdRoute
   '/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
@@ -184,6 +215,10 @@ export interface FileRoutesByTo {
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
+  '/admin/konsultacije': typeof AuthenticatedAdminKonsultacijeRoute
+  '/admin/nalog': typeof AuthenticatedAdminNalogRoute
+  '/admin/podesavanja': typeof AuthenticatedAdminPodesavanjaRoute
+  '/admin/tekstovi': typeof AuthenticatedAdminTekstoviRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/admin/besplatno/$id': typeof AuthenticatedAdminBesplatnoIdRoute
   '/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
@@ -209,6 +244,10 @@ export interface FileRoutesById {
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
+  '/_authenticated/admin/konsultacije': typeof AuthenticatedAdminKonsultacijeRoute
+  '/_authenticated/admin/nalog': typeof AuthenticatedAdminNalogRoute
+  '/_authenticated/admin/podesavanja': typeof AuthenticatedAdminPodesavanjaRoute
+  '/_authenticated/admin/tekstovi': typeof AuthenticatedAdminTekstoviRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/admin/besplatno/$id': typeof AuthenticatedAdminBesplatnoIdRoute
   '/_authenticated/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
@@ -234,6 +273,10 @@ export interface FileRouteTypes {
     | '/uslovi-koriscenja'
     | '/admin'
     | '/prirucnik/$slug'
+    | '/admin/konsultacije'
+    | '/admin/nalog'
+    | '/admin/podesavanja'
+    | '/admin/tekstovi'
     | '/admin/'
     | '/admin/besplatno/$id'
     | '/admin/besplatno/novi'
@@ -256,6 +299,10 @@ export interface FileRouteTypes {
     | '/politika-privatnosti'
     | '/uslovi-koriscenja'
     | '/prirucnik/$slug'
+    | '/admin/konsultacije'
+    | '/admin/nalog'
+    | '/admin/podesavanja'
+    | '/admin/tekstovi'
     | '/admin'
     | '/admin/besplatno/$id'
     | '/admin/besplatno/novi'
@@ -280,6 +327,10 @@ export interface FileRouteTypes {
     | '/uslovi-koriscenja'
     | '/_authenticated/admin'
     | '/prirucnik/$slug'
+    | '/_authenticated/admin/konsultacije'
+    | '/_authenticated/admin/nalog'
+    | '/_authenticated/admin/podesavanja'
+    | '/_authenticated/admin/tekstovi'
     | '/_authenticated/admin/'
     | '/_authenticated/admin/besplatno/$id'
     | '/_authenticated/admin/besplatno/novi'
@@ -370,6 +421,34 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/admin/'
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/konsultacije': {
+      id: '/_authenticated/admin/konsultacije'
+      path: '/konsultacije'
+      fullPath: '/admin/konsultacije'
+      preLoaderRoute: typeof AuthenticatedAdminKonsultacijeRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/nalog': {
+      id: '/_authenticated/admin/nalog'
+      path: '/nalog'
+      fullPath: '/admin/nalog'
+      preLoaderRoute: typeof AuthenticatedAdminNalogRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/podesavanja': {
+      id: '/_authenticated/admin/podesavanja'
+      path: '/podesavanja'
+      fullPath: '/admin/podesavanja'
+      preLoaderRoute: typeof AuthenticatedAdminPodesavanjaRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/tekstovi': {
+      id: '/_authenticated/admin/tekstovi'
+      path: '/tekstovi'
+      fullPath: '/admin/tekstovi'
+      preLoaderRoute: typeof AuthenticatedAdminTekstoviRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/admin/besplatno/': {
@@ -467,6 +546,10 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminKonsultacijeRoute: typeof AuthenticatedAdminKonsultacijeRoute
+  AuthenticatedAdminNalogRoute: typeof AuthenticatedAdminNalogRoute
+  AuthenticatedAdminPodesavanjaRoute: typeof AuthenticatedAdminPodesavanjaRoute
+  AuthenticatedAdminTekstoviRoute: typeof AuthenticatedAdminTekstoviRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
   AuthenticatedAdminBesplatnoIdRoute: typeof AuthenticatedAdminBesplatnoIdRoute
   AuthenticatedAdminBesplatnoNoviRoute: typeof AuthenticatedAdminBesplatnoNoviRoute
@@ -483,6 +566,10 @@ interface AuthenticatedAdminRouteChildren {
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminKonsultacijeRoute: AuthenticatedAdminKonsultacijeRoute,
+  AuthenticatedAdminNalogRoute: AuthenticatedAdminNalogRoute,
+  AuthenticatedAdminPodesavanjaRoute: AuthenticatedAdminPodesavanjaRoute,
+  AuthenticatedAdminTekstoviRoute: AuthenticatedAdminTekstoviRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
   AuthenticatedAdminBesplatnoIdRoute: AuthenticatedAdminBesplatnoIdRoute,
   AuthenticatedAdminBesplatnoNoviRoute: AuthenticatedAdminBesplatnoNoviRoute,
