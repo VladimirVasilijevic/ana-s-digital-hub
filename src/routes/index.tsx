@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
   loader: () => getHomeContent(),
   head: () => ({
     meta: [
-      { title: "Ana Vaspitač — praktični saveti za roditelje" },
+      { title: "Ana Vaspitač praktični saveti za roditelje" },
       { name: "description", content: site.description },
       { property: "og:title", content: "Ana Vaspitač — praktični saveti za roditelje" },
       { property: "og:description", content: site.description },
@@ -54,13 +54,7 @@ function Home() {
       <section className="px-5 pb-12 pt-8 sm:pt-12">
         <div className="mx-auto grid w-full max-w-5xl items-center gap-8 md:grid-cols-2">
           <div className="fade-up flex flex-col items-center text-center md:items-start md:text-left">
-            <img
-              src={logo}
-              alt="Ručni rad — vaspitačica Ana, logo"
-              width={96}
-              height={96}
-              className="h-16 w-16"
-            />
+            <img src={logo} alt="Ručni rad — vaspitačica Ana, logo" width={96} height={96} className="h-16 w-16" />
             <h1 className="mt-4 text-3xl leading-tight sm:text-4xl">
               {text(texts, "hero.name", "Ana Vaspitač")} — praktični saveti za roditelje
             </h1>
@@ -159,14 +153,13 @@ function Home() {
         tone="muted"
         title={text(texts, "consultations.title", "💬 Individualne konsultacije")}
         subtitle={
-          consultation?.short_description ??
-          "Razgovor jedan na jedan o konkretnoj situaciji sa tvojim detetom."
+          consultation?.short_description ?? "Razgovor jedan na jedan o konkretnoj situaciji sa tvojim detetom."
         }
       >
         <div className="rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6">
           <p className="text-[15px] leading-relaxed text-muted-foreground">
-            Zajedno pravimo plan koji možeš da primeniš odmah. Na stranici konsultacija su svi
-            detalji: kako izgleda razgovor, cena, prijava preko forme i podaci za uplatu.
+            Zajedno pravimo plan koji možeš da primeniš odmah. Na stranici konsultacija su svi detalji: kako izgleda
+            razgovor, cena, prijava preko forme i podaci za uplatu.
           </p>
           <Button asChild variant="hero" size="touch" className="mt-4 w-full sm:w-auto">
             <Link to="/konsultacije">Saznaj više →</Link>
@@ -208,9 +201,7 @@ function Home() {
             ) : null}
             <div className="p-5">
               <h3 className="text-lg font-semibold">{activeWebinar.title}</h3>
-              {webinarDate ? (
-                <p className="mt-1 text-[15px] text-muted-foreground">{webinarDate}</p>
-              ) : null}
+              {webinarDate ? <p className="mt-1 text-[15px] text-muted-foreground">{webinarDate}</p> : null}
               <Button asChild variant="hero" size="touchLg" className="mt-4 w-full sm:w-auto">
                 <a href={activeWebinar.registration_url!} target="_blank" rel="noopener noreferrer">
                   Prijavi se →
