@@ -3,7 +3,7 @@ import anaAbout from "@/assets/ana-about.jpg";
 import { contact } from "./contact";
 
 export const site = {
-  title: "Ana Vaspitač — praktični saveti za roditelje",
+  title: "Ana Vaspitač praktični saveti za roditelje",
   tagline: "Vaspitačica i mama. Pretvaram iskustvo iz rada sa decom u praktične savete za roditelje.",
   description:
     "Ana Vaspitač — priručnici, konsultacije i besplatni materijali za roditelje dece do 7 godina. Jednostavni, primenljivi saveti iz svakodnevnog rada sa decom.",
