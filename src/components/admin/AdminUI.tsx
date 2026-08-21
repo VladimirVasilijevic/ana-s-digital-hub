@@ -102,13 +102,20 @@ export function ListField({
   value: string[];
   onChange: (value: string[]) => void;
 }) {
+  // Keep raw text locally so spaces and empty lines survive while typing.
+  const [text, setText] = useState<string | null>(null);
+  const shown = text ?? value.join("\n");
+
   return (
     <TextareaField
       label={label}
       hint="Jedna stavka po redu."
       rows={5}
-      value={value.join("\n")}
-      onChange={(text) => onChange(text.split("\n").map((l) => l.trim()).filter(Boolean))}
+      value={shown}
+      onChange={(next) => {
+        setText(next);
+        onChange(next.split("\n").map((l) => l.trim()).filter(Boolean));
+      }}
     />
   );
 }
