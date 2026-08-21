@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Ana Vaspitač praktični saveti za roditelje" },
       { name: "description", content: site.description },
-      { property: "og:title", content: "Ana Vaspitač — praktični saveti za roditelje" },
+      { property: "og:title", content: "Ana Vaspitač praktični saveti za roditelje" },
       { property: "og:description", content: site.description },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
