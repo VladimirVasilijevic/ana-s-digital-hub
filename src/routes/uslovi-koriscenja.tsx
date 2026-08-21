@@ -58,8 +58,8 @@ function Terms() {
         </p>
         <p>
           Za sva pitanja piši na{" "}
-          <a className="text-primary underline" href={`mailto:${contact.email}`}>
-            {contact.email}
+          <a className="text-primary underline" href="mailto:andjelkovski.ana5@gmail.com">
+            andjelkovski.ana5@gmail.com
           </a>
           .
         </p>
