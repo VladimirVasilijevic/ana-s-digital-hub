@@ -3,7 +3,7 @@ import type {} from "@tanstack/react-start";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 
-const BASE_URL = "https://ana-link-warmth.lovable.app";
+const BASE_URL = "https://www.ana-vaspitac.com";
 
 interface SitemapEntry {
   path: string;
