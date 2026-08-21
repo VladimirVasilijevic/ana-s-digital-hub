@@ -42,7 +42,7 @@ export const Route = createFileRoute("/prirucnik/$slug")({
             name: product.title,
             description: product.detailed_description || product.short_description,
             brand: { "@type": "Person", name: "Ana Vaspitač" },
-            url: `https://ana-link-warmth.lovable.app/prirucnik/${params.slug}`,
+            url: `https://www.ana-vaspitac.com/prirucnik/${params.slug}`,
             ...(product.price_amount != null
               ? {
                   offers: {
@@ -50,7 +50,7 @@ export const Route = createFileRoute("/prirucnik/$slug")({
                     price: String(product.price_amount),
                     priceCurrency: product.price_currency ?? "RSD",
                     availability: "https://schema.org/InStock",
-                    url: `https://ana-link-warmth.lovable.app/prirucnik/${params.slug}`,
+                    url: `https://www.ana-vaspitac.com/prirucnik/${params.slug}`,
                   },
                 }
               : {}),
