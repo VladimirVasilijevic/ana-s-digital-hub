@@ -25,9 +25,6 @@ export function SiteFooter() {
               Instagram
             </a>
           ) : null}
-          <Link to="/admin" className="hover:text-primary">
-            Admin
-          </Link>
         </nav>
         <p className="text-xs text-muted-foreground">
           © {new Date().getFullYear()} {name}. Sva prava zadržana.
