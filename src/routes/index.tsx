@@ -239,7 +239,7 @@ function Home() {
       <Section
         id="mediji"
         title={text(texts, "media.title", "Gde ste me mogli videti?")}
-        subtitle={text(texts, "media.subtitle", "Gostovanja i razgovori — klik otvara video.")}
+        subtitle={text(texts, "media.subtitle", "Gostovanja i razgovori.")}
       >
         {media.length > 0 ? (
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
