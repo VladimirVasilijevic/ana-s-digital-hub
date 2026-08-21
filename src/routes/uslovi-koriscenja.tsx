@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { contact } from "@/data/contact";
 
 const description = "Uslovi korišćenja sajta i digitalnih materijala Ane Vaspitač.";
 
