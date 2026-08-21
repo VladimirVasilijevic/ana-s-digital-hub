@@ -82,13 +82,7 @@ function Home() {
                 <a href="#besplatno">{text(texts, "cta.free", "Besplatni sadržaj")}</a>
               </Button>
               <Button asChild variant="quiet" size="touchLg" className="w-full sm:w-auto">
-                {activeWebinar ? (
-                  <a href={activeWebinar.registration_url!} target="_blank" rel="noopener noreferrer">
-                    {text(texts, "cta.webinar", "Webinar")}
-                  </a>
-                ) : (
-                  <a href="#webinar">{text(texts, "cta.webinar", "Webinar")}</a>
-                )}
+                <a href="#webinar">{text(texts, "cta.webinar", "Webinar")}</a>
               </Button>
               <Button asChild variant="quiet" size="touchLg" className="w-full sm:w-auto">
                 <a href="#mediji">{text(texts, "cta.media", "Gde ste me mogli videti?")}</a>
@@ -113,7 +107,7 @@ function Home() {
       <Section id="o-meni" tone="muted">
         <div className="grid items-center gap-6 md:grid-cols-[1fr_1.2fr]">
           <img
-            src={site.about.image}
+            src={mediaUrl(text(texts, "about.image")) ?? site.about.image}
             alt={site.about.imageAlt}
             loading="lazy"
             width={768}
