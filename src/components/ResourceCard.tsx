@@ -33,7 +33,7 @@ export function ResourceCard({ resource }: { resource: FreeResource }) {
         </p>
         <Button
           asChild
-          variant={isDownload ? "soft" : "quiet"}
+          variant="soft"
           size="touch"
           className="w-full sm:w-auto"
         >

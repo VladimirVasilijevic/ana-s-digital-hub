@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { AdminPage, Card, Field, TextareaField } from "@/components/admin/AdminUI";
+import { AdminPage, Card, Field, FileField, TextareaField } from "@/components/admin/AdminUI";
 import { Button } from "@/components/ui/button";
 import { getSiteTexts, saveSiteTexts, type SiteTexts } from "@/services/siteContent";
 
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/_authenticated/admin/tekstovi")({
   component: TextsPage,
 });
 
-type FieldDef = { key: string; label: string; multiline?: boolean };
+type FieldDef = { key: string; label: string; multiline?: boolean; image?: boolean };
 type Group = { title: string; fields: FieldDef[] };
 
 const groups: Group[] = [
@@ -30,6 +30,7 @@ const groups: Group[] = [
     title: "O meni",
     fields: [
       { key: "about.title", label: "Naslov" },
+      { key: "about.image", label: "Slika", image: true },
       { key: "about.text", label: "Tekst (jedan pasus po redu)", multiline: true },
       { key: "about.cta_label", label: "Tekst dugmeta" },
       { key: "about.cta_url", label: "Link dugmeta" },
@@ -122,7 +123,15 @@ function TextsPage() {
             <h2 className="text-lg">{group.title}</h2>
             <div className="mt-4 space-y-4">
               {group.fields.map((field) =>
-                field.multiline ? (
+                field.image ? (
+                  <FileField
+                    key={field.key}
+                    label={field.label}
+                    folder="media"
+                    value={texts[field.key] ?? ""}
+                    onChange={(v) => set(field.key, v ?? "")}
+                  />
+                ) : field.multiline ? (
                   <TextareaField
                     key={field.key}
                     label={field.label}
