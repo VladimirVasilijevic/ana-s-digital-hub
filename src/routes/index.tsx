@@ -56,7 +56,7 @@ function Home() {
           <div className="fade-up flex flex-col items-center text-center md:items-start md:text-left">
             <img src={logo} alt="Ručni rad — vaspitačica Ana, logo" width={96} height={96} className="h-16 w-16" />
             <h1 className="mt-4 text-3xl leading-tight sm:text-4xl">
-              {text(texts, "hero.name", "Ana Vaspitač")} — praktični saveti za roditelje
+              {text(texts, "hero.name", "Ana Vaspitač")} praktični saveti za roditelje
             </h1>
             <p className="mt-3 max-w-md text-[16px] leading-relaxed text-muted-foreground">
               {text(texts, "hero.tagline", site.tagline)}
