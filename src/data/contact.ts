@@ -14,7 +14,7 @@ export type ContactChannel = {
 export const contact = {
   name: "Ana Vaspitač",
   brand: "Ručni rad — vaspitačica Ana",
-  email: "kontakt@ana-vaspitac.com", // placeholder
+  email: "kontakt@ana-vaspitac.com",
   phone: "+381 60 000 0000", // placeholder
   whatsappNumber: "381600000000", // placeholder
   viberNumber: "381600000000", // placeholder
