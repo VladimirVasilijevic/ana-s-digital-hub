@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as KonsultacijeRouteImport } from './routes/konsultacije'
 import { Route as PolitikaPrivatnostiRouteImport } from './routes/politika-privatnosti'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as UsloviKoriscenjaRouteImport } from './routes/uslovi-koriscenja'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as PrirucnikSlugRouteImport } from './routes/prirucnik.$slug'
@@ -58,6 +59,11 @@ const KonsultacijeRoute = KonsultacijeRouteImport.update({
 const PolitikaPrivatnostiRoute = PolitikaPrivatnostiRouteImport.update({
   id: '/politika-privatnosti',
   path: '/politika-privatnosti',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UsloviKoriscenjaRoute = UsloviKoriscenjaRouteImport.update({
@@ -186,6 +192,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/konsultacije': typeof KonsultacijeRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
@@ -213,6 +220,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/konsultacije': typeof KonsultacijeRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
   '/admin/konsultacije': typeof AuthenticatedAdminKonsultacijeRoute
@@ -241,6 +249,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/konsultacije': typeof KonsultacijeRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
@@ -270,6 +279,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/konsultacije'
     | '/politika-privatnosti'
+    | '/sitemap.xml'
     | '/uslovi-koriscenja'
     | '/admin'
     | '/prirucnik/$slug'
@@ -297,6 +307,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/konsultacije'
     | '/politika-privatnosti'
+    | '/sitemap.xml'
     | '/uslovi-koriscenja'
     | '/prirucnik/$slug'
     | '/admin/konsultacije'
@@ -324,6 +335,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/konsultacije'
     | '/politika-privatnosti'
+    | '/sitemap.xml'
     | '/uslovi-koriscenja'
     | '/_authenticated/admin'
     | '/prirucnik/$slug'
@@ -353,6 +365,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   KonsultacijeRoute: typeof KonsultacijeRoute
   PolitikaPrivatnostiRoute: typeof PolitikaPrivatnostiRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UsloviKoriscenjaRoute: typeof UsloviKoriscenjaRoute
   PrirucnikSlugRoute: typeof PrirucnikSlugRoute
   ApiPublicFileSplatRoute: typeof ApiPublicFileSplatRoute
@@ -393,6 +406,13 @@ declare module '@tanstack/react-router' {
       path: '/politika-privatnosti'
       fullPath: '/politika-privatnosti'
       preLoaderRoute: typeof PolitikaPrivatnostiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/uslovi-koriscenja': {
@@ -605,6 +625,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   KonsultacijeRoute: KonsultacijeRoute,
   PolitikaPrivatnostiRoute: PolitikaPrivatnostiRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   UsloviKoriscenjaRoute: UsloviKoriscenjaRoute,
   PrirucnikSlugRoute: PrirucnikSlugRoute,
   ApiPublicFileSplatRoute: ApiPublicFileSplatRoute,
