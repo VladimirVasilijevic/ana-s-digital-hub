@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { contact } from "@/data/contact";
 
 const description = "Uslovi korišćenja sajta i digitalnih materijala Ane Vaspitač.";
 
@@ -58,8 +57,8 @@ function Terms() {
         </p>
         <p>
           Za sva pitanja piši na{" "}
-          <a className="text-primary underline" href={`mailto:${contact.email}`}>
-            {contact.email}
+          <a className="text-primary underline" href="mailto:andjelkovski.ana5@gmail.com">
+            andjelkovski.ana5@gmail.com
           </a>
           .
         </p>
