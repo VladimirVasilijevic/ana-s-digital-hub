@@ -33,6 +33,30 @@ export const Route = createFileRoute("/prirucnik/$slug")({
         { property: "og:url", content: `/prirucnik/${params.slug}` },
       ],
       links: [{ rel: "canonical", href: `/prirucnik/${params.slug}` }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: product.title,
+            description: product.detailed_description || product.short_description,
+            brand: { "@type": "Person", name: "Ana Vaspitač" },
+            url: `https://ana-link-warmth.lovable.app/prirucnik/${params.slug}`,
+            ...(product.price_amount != null
+              ? {
+                  offers: {
+                    "@type": "Offer",
+                    price: String(product.price_amount),
+                    priceCurrency: product.price_currency ?? "RSD",
+                    availability: "https://schema.org/InStock",
+                    url: `https://ana-link-warmth.lovable.app/prirucnik/${params.slug}`,
+                  },
+                }
+              : {}),
+          }),
+        },
+      ],
     };
   },
   component: ProductPage,

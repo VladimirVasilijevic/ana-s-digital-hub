@@ -62,7 +62,7 @@ function Home() {
               className="h-16 w-16"
             />
             <h1 className="mt-4 text-3xl leading-tight sm:text-4xl">
-              {text(texts, "hero.name", "Ana Vaspitač")}
+              {text(texts, "hero.name", "Ana Vaspitač")} — praktični saveti za roditelje
             </h1>
             <p className="mt-3 max-w-md text-[16px] leading-relaxed text-muted-foreground">
               {text(texts, "hero.tagline", site.tagline)}
