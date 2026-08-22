@@ -29,10 +29,22 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Ana Vaspitač",
+          url: "https://www.ana-vaspitac.com/",
+          logo: "https://www.ana-vaspitac.com/icon-512.png",
+          description: site.description,
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
           "@type": "Person",
           name: "Ana Vaspitač",
           jobTitle: "Vaspitačica",
           description: site.tagline,
+          image: "https://www.ana-vaspitac.com/icon-512.png",
         }),
       },
     ],
