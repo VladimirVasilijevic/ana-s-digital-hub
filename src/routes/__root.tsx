@@ -8,6 +8,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { Analytics } from "@vercel/analytics/react";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
@@ -161,7 +162,7 @@ function RootComponent() {
   const isAdmin = pathname.startsWith("/admin");
 
   return (
-    <QueryClientProvider client={queryClient}>
+<QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col">
         {isAdmin ? null : <SiteHeader />}
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
@@ -171,6 +172,7 @@ function RootComponent() {
         {isAdmin ? null : <SiteFooter />}
       </div>
       <Toaster position="top-center" />
+      <Analytics />
     </QueryClientProvider>
   );
 }
