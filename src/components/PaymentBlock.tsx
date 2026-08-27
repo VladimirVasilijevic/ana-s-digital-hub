@@ -29,10 +29,9 @@ export function PaymentBlock({
   const { copiedId, copy } = useCopy();
   const { payment } = useGlobalContent();
 
-  const rows = [
+const rows = [
     { id: "primalac", label: "Primalac", value: payment?.recipient ?? "—" },
     { id: "racun", label: "Broj računa", value: payment?.account ?? "—" },
-    { id: "banka", label: "Banka", value: payment?.bank ?? "—" },
     { id: "iznos", label: "Iznos", value: price ? formatPrice(price) : "—" },
     { id: "svrha", label: "Svrha uplate", value: purpose ?? "Uplata" },
   ].filter((row) => row.value && row.value !== "—" ? true : row.id === "iznos" || row.id === "svrha");
