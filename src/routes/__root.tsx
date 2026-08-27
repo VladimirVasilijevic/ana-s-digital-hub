@@ -104,7 +104,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", sizes: "any" },
       { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
       { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
-      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+{ rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+    ],
+    scripts: [
+      {
+        children: `(function (s, e, n, d, er) {
+    s['Sender'] = er;
+    s[er] = s[er] || function () {
+      (s[er].q = s[er].q || []).push(arguments)
+    }, s[er].l = 1 * new Date();
+
+    s[er].on = function(event, callback) {
+      s[er].listeners = s[er].listeners || {};
+      (s[er].listeners[event] = s[er].listeners[event] || []).push(callback);
+    };
+
+    var a = e.createElement(n),
+        m = e.getElementsByTagName(n)[0];
+
+    a.async = 1;
+    a.src = d;
+    m.parentNode.insertBefore(a, m);
+
+  })(window, document, 'script',
+     'https://cdn.sender.net/accounts_resources/universal.js',
+     'sender');
+
+  sender('69cda149147268');`,
+      },
     ],
   }),
   loader: () => getGlobalContent(),
