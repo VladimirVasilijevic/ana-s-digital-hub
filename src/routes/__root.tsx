@@ -107,7 +107,36 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
     ],
   }),
-  loader: () => getGlobalContent(),
+loader: () => getGlobalContent(),
+  head: () => ({
+    scripts: [
+      {
+        children: `(function (s, e, n, d, er) {
+    s['Sender'] = er;
+    s[er] = s[er] || function () {
+      (s[er].q = s[er].q || []).push(arguments)
+    }, s[er].l = 1 * new Date();
+
+    s[er].on = function(event, callback) {
+      s[er].listeners = s[er].listeners || {};
+      (s[er].listeners[event] = s[er].listeners[event] || []).push(callback);
+    };
+
+    var a = e.createElement(n),
+        m = e.getElementsByTagName(n)[0];
+
+    a.async = 1;
+    a.src = d;
+    m.parentNode.insertBefore(a, m);
+
+  })(window, document, 'script',
+     'https://cdn.sender.net/accounts_resources/universal.js',
+     'sender');
+
+  sender('69cda149147268');`,
+      },
+    ],
+  }),
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
