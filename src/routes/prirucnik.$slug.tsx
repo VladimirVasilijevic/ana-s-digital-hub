@@ -15,10 +15,7 @@ export const Route = createFileRoute("/prirucnik/$slug")({
   head: ({ params, loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [
-          { title: "Priručnik nije pronađen — Ana Vaspitač" },
-          { name: "robots", content: "noindex" },
-        ],
+        meta: [{ title: "Priručnik nije pronađen — Ana Vaspitač" }, { name: "robots", content: "noindex" }],
       };
     }
     const { product } = loaderData;
@@ -81,9 +78,7 @@ function ProductPage() {
   const { product } = Route.useLoaderData();
   const image = mediaUrl(product.image_url);
   const price =
-    product.price_amount != null
-      ? { amount: product.price_amount, currency: product.price_currency }
-      : undefined;
+    product.price_amount != null ? { amount: product.price_amount, currency: product.price_currency } : undefined;
 
   return (
     <main className="mx-auto w-full max-w-2xl px-5 py-10">
@@ -174,7 +169,7 @@ function ProductPage() {
             </div>
           </li>
           <li>
-            <h3 className="text-base font-semibold">4. Ana ti šalje PDF</h3>
+            <h3 className="text-base font-semibold">4. Nakon uplate</h3>
             <p className="mt-1 whitespace-pre-line text-[15px] text-muted-foreground">
               {product.purchase_instructions ||
                 "Priručnik stiže na kanal preko kog si poslao/la potvrdu, najčešće u roku od 24h."}
