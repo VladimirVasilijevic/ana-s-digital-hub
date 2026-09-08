@@ -30,6 +30,7 @@ import { Route as AuthenticatedAdminBesplatnoNoviRouteImport } from './routes/_a
 import { Route as AuthenticatedAdminMedijiIndexRouteImport } from './routes/_authenticated/admin.mediji.index'
 import { Route as AuthenticatedAdminMedijiIdRouteImport } from './routes/_authenticated/admin.mediji.$id'
 import { Route as AuthenticatedAdminMedijiNoviRouteImport } from './routes/_authenticated/admin.mediji.novi'
+import { Route as AuthenticatedAdminPaketiIdRouteImport } from './routes/_authenticated/admin.paketi.$id'
 import { Route as AuthenticatedAdminPaketiNoviRouteImport } from './routes/_authenticated/admin.paketi.novi'
 import { Route as AuthenticatedAdminProizvodiIndexRouteImport } from './routes/_authenticated/admin.proizvodi.index'
 import { Route as AuthenticatedAdminProizvodiIdRouteImport } from './routes/_authenticated/admin.proizvodi.$id'
@@ -152,6 +153,12 @@ const AuthenticatedAdminMedijiNoviRoute =
     path: '/mediji/novi',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminPaketiIdRoute =
+  AuthenticatedAdminPaketiIdRouteImport.update({
+    id: '/paketi/$id',
+    path: '/paketi/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminPaketiNoviRoute =
   AuthenticatedAdminPaketiNoviRouteImport.update({
     id: '/paketi/novi',
@@ -219,6 +226,7 @@ export interface FileRoutesByFullPath {
   '/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
   '/admin/mediji/$id': typeof AuthenticatedAdminMedijiIdRoute
   '/admin/mediji/novi': typeof AuthenticatedAdminMedijiNoviRoute
+  '/admin/paketi/$id': typeof AuthenticatedAdminPaketiIdRoute
   '/admin/paketi/novi': typeof AuthenticatedAdminPaketiNoviRoute
   '/admin/proizvodi/$id': typeof AuthenticatedAdminProizvodiIdRoute
   '/admin/proizvodi/novi': typeof AuthenticatedAdminProizvodiNoviRoute
@@ -248,6 +256,7 @@ export interface FileRoutesByTo {
   '/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
   '/admin/mediji/$id': typeof AuthenticatedAdminMedijiIdRoute
   '/admin/mediji/novi': typeof AuthenticatedAdminMedijiNoviRoute
+  '/admin/paketi/$id': typeof AuthenticatedAdminPaketiIdRoute
   '/admin/paketi/novi': typeof AuthenticatedAdminPaketiNoviRoute
   '/admin/proizvodi/$id': typeof AuthenticatedAdminProizvodiIdRoute
   '/admin/proizvodi/novi': typeof AuthenticatedAdminProizvodiNoviRoute
@@ -280,6 +289,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
   '/_authenticated/admin/mediji/$id': typeof AuthenticatedAdminMedijiIdRoute
   '/_authenticated/admin/mediji/novi': typeof AuthenticatedAdminMedijiNoviRoute
+  '/_authenticated/admin/paketi/$id': typeof AuthenticatedAdminPaketiIdRoute
   '/_authenticated/admin/paketi/novi': typeof AuthenticatedAdminPaketiNoviRoute
   '/_authenticated/admin/proizvodi/$id': typeof AuthenticatedAdminProizvodiIdRoute
   '/_authenticated/admin/proizvodi/novi': typeof AuthenticatedAdminProizvodiNoviRoute
@@ -312,6 +322,7 @@ export interface FileRouteTypes {
     | '/admin/besplatno/novi'
     | '/admin/mediji/$id'
     | '/admin/mediji/novi'
+    | '/admin/paketi/$id'
     | '/admin/paketi/novi'
     | '/admin/proizvodi/$id'
     | '/admin/proizvodi/novi'
@@ -341,6 +352,7 @@ export interface FileRouteTypes {
     | '/admin/besplatno/novi'
     | '/admin/mediji/$id'
     | '/admin/mediji/novi'
+    | '/admin/paketi/$id'
     | '/admin/paketi/novi'
     | '/admin/proizvodi/$id'
     | '/admin/proizvodi/novi'
@@ -372,6 +384,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/besplatno/novi'
     | '/_authenticated/admin/mediji/$id'
     | '/_authenticated/admin/mediji/novi'
+    | '/_authenticated/admin/paketi/$id'
     | '/_authenticated/admin/paketi/novi'
     | '/_authenticated/admin/proizvodi/$id'
     | '/_authenticated/admin/proizvodi/novi'
@@ -546,6 +559,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminMedijiNoviRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/paketi/$id': {
+      id: '/_authenticated/admin/paketi/$id'
+      path: '/paketi/$id'
+      fullPath: '/admin/paketi/$id'
+      preLoaderRoute: typeof AuthenticatedAdminPaketiIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/paketi/novi': {
       id: '/_authenticated/admin/paketi/novi'
       path: '/paketi/novi'
@@ -615,6 +635,7 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminBesplatnoNoviRoute: typeof AuthenticatedAdminBesplatnoNoviRoute
   AuthenticatedAdminMedijiIdRoute: typeof AuthenticatedAdminMedijiIdRoute
   AuthenticatedAdminMedijiNoviRoute: typeof AuthenticatedAdminMedijiNoviRoute
+  AuthenticatedAdminPaketiIdRoute: typeof AuthenticatedAdminPaketiIdRoute
   AuthenticatedAdminPaketiNoviRoute: typeof AuthenticatedAdminPaketiNoviRoute
   AuthenticatedAdminProizvodiIdRoute: typeof AuthenticatedAdminProizvodiIdRoute
   AuthenticatedAdminProizvodiNoviRoute: typeof AuthenticatedAdminProizvodiNoviRoute
@@ -636,6 +657,7 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminBesplatnoNoviRoute: AuthenticatedAdminBesplatnoNoviRoute,
   AuthenticatedAdminMedijiIdRoute: AuthenticatedAdminMedijiIdRoute,
   AuthenticatedAdminMedijiNoviRoute: AuthenticatedAdminMedijiNoviRoute,
+  AuthenticatedAdminPaketiIdRoute: AuthenticatedAdminPaketiIdRoute,
   AuthenticatedAdminPaketiNoviRoute: AuthenticatedAdminPaketiNoviRoute,
   AuthenticatedAdminProizvodiIdRoute: AuthenticatedAdminProizvodiIdRoute,
   AuthenticatedAdminProizvodiNoviRoute: AuthenticatedAdminProizvodiNoviRoute,
