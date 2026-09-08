@@ -25,6 +25,7 @@ async function loadSummary() {
 
   return {
     products: count(products.data),
+    bundles: count(bundles.data),
     free: count(free.data),
     webinars: count(webinars.data),
     media: count(media.data),
@@ -37,6 +38,7 @@ function Dashboard() {
   const { data } = useQuery({ queryKey: ["admin", "summary"], queryFn: loadSummary });
 
   const stats = [
+    { label: "Paketi", value: data?.bundles, to: "/admin/paketi" as const },
     { label: "Proizvodi", value: data?.products, to: "/admin/proizvodi" as const },
     { label: "Besplatni sadržaj", value: data?.free, to: "/admin/besplatno" as const },
     { label: "Webinari", value: data?.webinars, to: "/admin/webinari" as const },
