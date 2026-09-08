@@ -4,6 +4,8 @@ type Tables = Database["public"]["Tables"];
 
 export type Product = Tables["products"]["Row"];
 export type ProductInput = Tables["products"]["Insert"];
+export type Bundle = Tables["bundles"]["Row"];
+export type BundleInput = Tables["bundles"]["Insert"];
 export type Consultation = Tables["consultation"]["Row"];
 export type FreeResource = Tables["free_resources"]["Row"];
 export type FreeResourceInput = Tables["free_resources"]["Insert"];

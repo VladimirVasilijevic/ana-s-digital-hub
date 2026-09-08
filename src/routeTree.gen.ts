@@ -30,6 +30,7 @@ import { Route as AuthenticatedAdminBesplatnoNoviRouteImport } from './routes/_a
 import { Route as AuthenticatedAdminMedijiIndexRouteImport } from './routes/_authenticated/admin.mediji.index'
 import { Route as AuthenticatedAdminMedijiIdRouteImport } from './routes/_authenticated/admin.mediji.$id'
 import { Route as AuthenticatedAdminMedijiNoviRouteImport } from './routes/_authenticated/admin.mediji.novi'
+import { Route as AuthenticatedAdminPaketiIndexRouteImport } from './routes/_authenticated/admin.paketi.index'
 import { Route as AuthenticatedAdminPaketiIdRouteImport } from './routes/_authenticated/admin.paketi.$id'
 import { Route as AuthenticatedAdminPaketiNoviRouteImport } from './routes/_authenticated/admin.paketi.novi'
 import { Route as AuthenticatedAdminProizvodiIndexRouteImport } from './routes/_authenticated/admin.proizvodi.index'
@@ -153,6 +154,12 @@ const AuthenticatedAdminMedijiNoviRoute =
     path: '/mediji/novi',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminPaketiIndexRoute =
+  AuthenticatedAdminPaketiIndexRouteImport.update({
+    id: '/paketi/',
+    path: '/paketi/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminPaketiIdRoute =
   AuthenticatedAdminPaketiIdRouteImport.update({
     id: '/paketi/$id',
@@ -235,6 +242,7 @@ export interface FileRoutesByFullPath {
   '/api/public/file/$': typeof ApiPublicFileSplatRoute
   '/admin/besplatno/': typeof AuthenticatedAdminBesplatnoIndexRoute
   '/admin/mediji/': typeof AuthenticatedAdminMedijiIndexRoute
+  '/admin/paketi/': typeof AuthenticatedAdminPaketiIndexRoute
   '/admin/proizvodi/': typeof AuthenticatedAdminProizvodiIndexRoute
   '/admin/webinari/': typeof AuthenticatedAdminWebinariIndexRoute
 }
@@ -265,6 +273,7 @@ export interface FileRoutesByTo {
   '/api/public/file/$': typeof ApiPublicFileSplatRoute
   '/admin/besplatno': typeof AuthenticatedAdminBesplatnoIndexRoute
   '/admin/mediji': typeof AuthenticatedAdminMedijiIndexRoute
+  '/admin/paketi': typeof AuthenticatedAdminPaketiIndexRoute
   '/admin/proizvodi': typeof AuthenticatedAdminProizvodiIndexRoute
   '/admin/webinari': typeof AuthenticatedAdminWebinariIndexRoute
 }
@@ -298,6 +307,7 @@ export interface FileRoutesById {
   '/api/public/file/$': typeof ApiPublicFileSplatRoute
   '/_authenticated/admin/besplatno/': typeof AuthenticatedAdminBesplatnoIndexRoute
   '/_authenticated/admin/mediji/': typeof AuthenticatedAdminMedijiIndexRoute
+  '/_authenticated/admin/paketi/': typeof AuthenticatedAdminPaketiIndexRoute
   '/_authenticated/admin/proizvodi/': typeof AuthenticatedAdminProizvodiIndexRoute
   '/_authenticated/admin/webinari/': typeof AuthenticatedAdminWebinariIndexRoute
 }
@@ -331,6 +341,7 @@ export interface FileRouteTypes {
     | '/api/public/file/$'
     | '/admin/besplatno/'
     | '/admin/mediji/'
+    | '/admin/paketi/'
     | '/admin/proizvodi/'
     | '/admin/webinari/'
   fileRoutesByTo: FileRoutesByTo
@@ -361,6 +372,7 @@ export interface FileRouteTypes {
     | '/api/public/file/$'
     | '/admin/besplatno'
     | '/admin/mediji'
+    | '/admin/paketi'
     | '/admin/proizvodi'
     | '/admin/webinari'
   id:
@@ -393,6 +405,7 @@ export interface FileRouteTypes {
     | '/api/public/file/$'
     | '/_authenticated/admin/besplatno/'
     | '/_authenticated/admin/mediji/'
+    | '/_authenticated/admin/paketi/'
     | '/_authenticated/admin/proizvodi/'
     | '/_authenticated/admin/webinari/'
   fileRoutesById: FileRoutesById
@@ -559,6 +572,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminMedijiNoviRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/paketi/': {
+      id: '/_authenticated/admin/paketi/'
+      path: '/paketi'
+      fullPath: '/admin/paketi/'
+      preLoaderRoute: typeof AuthenticatedAdminPaketiIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/paketi/$id': {
       id: '/_authenticated/admin/paketi/$id'
       path: '/paketi/$id'
@@ -643,6 +663,7 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminWebinariNoviRoute: typeof AuthenticatedAdminWebinariNoviRoute
   AuthenticatedAdminBesplatnoIndexRoute: typeof AuthenticatedAdminBesplatnoIndexRoute
   AuthenticatedAdminMedijiIndexRoute: typeof AuthenticatedAdminMedijiIndexRoute
+  AuthenticatedAdminPaketiIndexRoute: typeof AuthenticatedAdminPaketiIndexRoute
   AuthenticatedAdminProizvodiIndexRoute: typeof AuthenticatedAdminProizvodiIndexRoute
   AuthenticatedAdminWebinariIndexRoute: typeof AuthenticatedAdminWebinariIndexRoute
 }
@@ -665,6 +686,7 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminWebinariNoviRoute: AuthenticatedAdminWebinariNoviRoute,
   AuthenticatedAdminBesplatnoIndexRoute: AuthenticatedAdminBesplatnoIndexRoute,
   AuthenticatedAdminMedijiIndexRoute: AuthenticatedAdminMedijiIndexRoute,
+  AuthenticatedAdminPaketiIndexRoute: AuthenticatedAdminPaketiIndexRoute,
   AuthenticatedAdminProizvodiIndexRoute: AuthenticatedAdminProizvodiIndexRoute,
   AuthenticatedAdminWebinariIndexRoute: AuthenticatedAdminWebinariIndexRoute,
 }
