@@ -3,6 +3,7 @@ import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/Section";
 import { ProductCard } from "@/components/ProductCard";
+import { BundleCard } from "@/components/BundleCard";
 import { ResourceCard } from "@/components/ResourceCard";
 import { ContactLinks } from "@/components/ContactLinks";
 import { MediaCard } from "@/components/MediaCard";
@@ -53,7 +54,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { products, freeResources, webinar, media, consultation } = Route.useLoaderData();
+  const { products, bundles, freeResources, webinar, media, consultation } = Route.useLoaderData();
   const { texts, contact } = useGlobalContent();
 
   const activeWebinar = webinar && webinar.registration_url ? webinar : null;
@@ -78,6 +79,9 @@ function Home() {
               aria-label="Brza navigacija"
               className="mt-6 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap md:justify-start"
             >
+              <Button asChild variant="hero" size="touchLg" className="w-full sm:w-auto">
+                <a href="#paketi">{text(texts, "cta.bundles", "Paketi")}</a>
+              </Button>
               <Button asChild variant="hero" size="touchLg" className="w-full sm:w-auto">
                 <a href="#ponuda">{text(texts, "cta.products", "Proizvodi")}</a>
               </Button>
@@ -141,6 +145,25 @@ function Home() {
           </div>
         </div>
       </Section>
+
+      {/* BUNDLES */}
+      {bundles.length > 0 ? (
+        <Section
+          id="paketi"
+          title={text(texts, "bundles.title", "Paketi")}
+          subtitle={text(
+            texts,
+            "bundles.subtitle",
+            "Više materijala na jednom mestu, po povoljnijoj ceni.",
+          )}
+        >
+          <div className="grid gap-5 sm:grid-cols-2">
+            {bundles.map((bundle) => (
+              <BundleCard key={bundle.slug} bundle={bundle} />
+            ))}
+          </div>
+        </Section>
+      ) : null}
 
       {/* PRODUCTS & SERVICES */}
       <Section

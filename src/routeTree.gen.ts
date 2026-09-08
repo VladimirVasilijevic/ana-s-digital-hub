@@ -17,6 +17,7 @@ import { Route as PolitikaPrivatnostiRouteImport } from './routes/politika-priva
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as UsloviKoriscenjaRouteImport } from './routes/uslovi-koriscenja'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as PaketSlugRouteImport } from './routes/paket.$slug'
 import { Route as PrirucnikSlugRouteImport } from './routes/prirucnik.$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as AuthenticatedAdminKonsultacijeRouteImport } from './routes/_authenticated/admin.konsultacije'
@@ -29,6 +30,9 @@ import { Route as AuthenticatedAdminBesplatnoNoviRouteImport } from './routes/_a
 import { Route as AuthenticatedAdminMedijiIndexRouteImport } from './routes/_authenticated/admin.mediji.index'
 import { Route as AuthenticatedAdminMedijiIdRouteImport } from './routes/_authenticated/admin.mediji.$id'
 import { Route as AuthenticatedAdminMedijiNoviRouteImport } from './routes/_authenticated/admin.mediji.novi'
+import { Route as AuthenticatedAdminPaketiIndexRouteImport } from './routes/_authenticated/admin.paketi.index'
+import { Route as AuthenticatedAdminPaketiIdRouteImport } from './routes/_authenticated/admin.paketi.$id'
+import { Route as AuthenticatedAdminPaketiNoviRouteImport } from './routes/_authenticated/admin.paketi.novi'
 import { Route as AuthenticatedAdminProizvodiIndexRouteImport } from './routes/_authenticated/admin.proizvodi.index'
 import { Route as AuthenticatedAdminProizvodiIdRouteImport } from './routes/_authenticated/admin.proizvodi.$id'
 import { Route as AuthenticatedAdminProizvodiNoviRouteImport } from './routes/_authenticated/admin.proizvodi.novi'
@@ -75,6 +79,11 @@ const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const PaketSlugRoute = PaketSlugRouteImport.update({
+  id: '/paket/$slug',
+  path: '/paket/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const PrirucnikSlugRoute = PrirucnikSlugRouteImport.update({
   id: '/prirucnik/$slug',
@@ -145,6 +154,24 @@ const AuthenticatedAdminMedijiNoviRoute =
     path: '/mediji/novi',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminPaketiIndexRoute =
+  AuthenticatedAdminPaketiIndexRouteImport.update({
+    id: '/paketi/',
+    path: '/paketi/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminPaketiIdRoute =
+  AuthenticatedAdminPaketiIdRouteImport.update({
+    id: '/paketi/$id',
+    path: '/paketi/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminPaketiNoviRoute =
+  AuthenticatedAdminPaketiNoviRouteImport.update({
+    id: '/paketi/novi',
+    path: '/paketi/novi',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminProizvodiIndexRoute =
   AuthenticatedAdminProizvodiIndexRouteImport.update({
     id: '/proizvodi/',
@@ -195,6 +222,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/paket/$slug': typeof PaketSlugRoute
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
   '/admin/konsultacije': typeof AuthenticatedAdminKonsultacijeRoute
   '/admin/nalog': typeof AuthenticatedAdminNalogRoute
@@ -205,6 +233,8 @@ export interface FileRoutesByFullPath {
   '/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
   '/admin/mediji/$id': typeof AuthenticatedAdminMedijiIdRoute
   '/admin/mediji/novi': typeof AuthenticatedAdminMedijiNoviRoute
+  '/admin/paketi/$id': typeof AuthenticatedAdminPaketiIdRoute
+  '/admin/paketi/novi': typeof AuthenticatedAdminPaketiNoviRoute
   '/admin/proizvodi/$id': typeof AuthenticatedAdminProizvodiIdRoute
   '/admin/proizvodi/novi': typeof AuthenticatedAdminProizvodiNoviRoute
   '/admin/webinari/$id': typeof AuthenticatedAdminWebinariIdRoute
@@ -212,6 +242,7 @@ export interface FileRoutesByFullPath {
   '/api/public/file/$': typeof ApiPublicFileSplatRoute
   '/admin/besplatno/': typeof AuthenticatedAdminBesplatnoIndexRoute
   '/admin/mediji/': typeof AuthenticatedAdminMedijiIndexRoute
+  '/admin/paketi/': typeof AuthenticatedAdminPaketiIndexRoute
   '/admin/proizvodi/': typeof AuthenticatedAdminProizvodiIndexRoute
   '/admin/webinari/': typeof AuthenticatedAdminWebinariIndexRoute
 }
@@ -222,6 +253,7 @@ export interface FileRoutesByTo {
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
+  '/paket/$slug': typeof PaketSlugRoute
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
   '/admin/konsultacije': typeof AuthenticatedAdminKonsultacijeRoute
   '/admin/nalog': typeof AuthenticatedAdminNalogRoute
@@ -232,6 +264,8 @@ export interface FileRoutesByTo {
   '/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
   '/admin/mediji/$id': typeof AuthenticatedAdminMedijiIdRoute
   '/admin/mediji/novi': typeof AuthenticatedAdminMedijiNoviRoute
+  '/admin/paketi/$id': typeof AuthenticatedAdminPaketiIdRoute
+  '/admin/paketi/novi': typeof AuthenticatedAdminPaketiNoviRoute
   '/admin/proizvodi/$id': typeof AuthenticatedAdminProizvodiIdRoute
   '/admin/proizvodi/novi': typeof AuthenticatedAdminProizvodiNoviRoute
   '/admin/webinari/$id': typeof AuthenticatedAdminWebinariIdRoute
@@ -239,6 +273,7 @@ export interface FileRoutesByTo {
   '/api/public/file/$': typeof ApiPublicFileSplatRoute
   '/admin/besplatno': typeof AuthenticatedAdminBesplatnoIndexRoute
   '/admin/mediji': typeof AuthenticatedAdminMedijiIndexRoute
+  '/admin/paketi': typeof AuthenticatedAdminPaketiIndexRoute
   '/admin/proizvodi': typeof AuthenticatedAdminProizvodiIndexRoute
   '/admin/webinari': typeof AuthenticatedAdminWebinariIndexRoute
 }
@@ -252,6 +287,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/paket/$slug': typeof PaketSlugRoute
   '/prirucnik/$slug': typeof PrirucnikSlugRoute
   '/_authenticated/admin/konsultacije': typeof AuthenticatedAdminKonsultacijeRoute
   '/_authenticated/admin/nalog': typeof AuthenticatedAdminNalogRoute
@@ -262,6 +298,8 @@ export interface FileRoutesById {
   '/_authenticated/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
   '/_authenticated/admin/mediji/$id': typeof AuthenticatedAdminMedijiIdRoute
   '/_authenticated/admin/mediji/novi': typeof AuthenticatedAdminMedijiNoviRoute
+  '/_authenticated/admin/paketi/$id': typeof AuthenticatedAdminPaketiIdRoute
+  '/_authenticated/admin/paketi/novi': typeof AuthenticatedAdminPaketiNoviRoute
   '/_authenticated/admin/proizvodi/$id': typeof AuthenticatedAdminProizvodiIdRoute
   '/_authenticated/admin/proizvodi/novi': typeof AuthenticatedAdminProizvodiNoviRoute
   '/_authenticated/admin/webinari/$id': typeof AuthenticatedAdminWebinariIdRoute
@@ -269,6 +307,7 @@ export interface FileRoutesById {
   '/api/public/file/$': typeof ApiPublicFileSplatRoute
   '/_authenticated/admin/besplatno/': typeof AuthenticatedAdminBesplatnoIndexRoute
   '/_authenticated/admin/mediji/': typeof AuthenticatedAdminMedijiIndexRoute
+  '/_authenticated/admin/paketi/': typeof AuthenticatedAdminPaketiIndexRoute
   '/_authenticated/admin/proizvodi/': typeof AuthenticatedAdminProizvodiIndexRoute
   '/_authenticated/admin/webinari/': typeof AuthenticatedAdminWebinariIndexRoute
 }
@@ -282,6 +321,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/uslovi-koriscenja'
     | '/admin'
+    | '/paket/$slug'
     | '/prirucnik/$slug'
     | '/admin/konsultacije'
     | '/admin/nalog'
@@ -292,6 +332,8 @@ export interface FileRouteTypes {
     | '/admin/besplatno/novi'
     | '/admin/mediji/$id'
     | '/admin/mediji/novi'
+    | '/admin/paketi/$id'
+    | '/admin/paketi/novi'
     | '/admin/proizvodi/$id'
     | '/admin/proizvodi/novi'
     | '/admin/webinari/$id'
@@ -299,6 +341,7 @@ export interface FileRouteTypes {
     | '/api/public/file/$'
     | '/admin/besplatno/'
     | '/admin/mediji/'
+    | '/admin/paketi/'
     | '/admin/proizvodi/'
     | '/admin/webinari/'
   fileRoutesByTo: FileRoutesByTo
@@ -309,6 +352,7 @@ export interface FileRouteTypes {
     | '/politika-privatnosti'
     | '/sitemap.xml'
     | '/uslovi-koriscenja'
+    | '/paket/$slug'
     | '/prirucnik/$slug'
     | '/admin/konsultacije'
     | '/admin/nalog'
@@ -319,6 +363,8 @@ export interface FileRouteTypes {
     | '/admin/besplatno/novi'
     | '/admin/mediji/$id'
     | '/admin/mediji/novi'
+    | '/admin/paketi/$id'
+    | '/admin/paketi/novi'
     | '/admin/proizvodi/$id'
     | '/admin/proizvodi/novi'
     | '/admin/webinari/$id'
@@ -326,6 +372,7 @@ export interface FileRouteTypes {
     | '/api/public/file/$'
     | '/admin/besplatno'
     | '/admin/mediji'
+    | '/admin/paketi'
     | '/admin/proizvodi'
     | '/admin/webinari'
   id:
@@ -338,6 +385,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/uslovi-koriscenja'
     | '/_authenticated/admin'
+    | '/paket/$slug'
     | '/prirucnik/$slug'
     | '/_authenticated/admin/konsultacije'
     | '/_authenticated/admin/nalog'
@@ -348,6 +396,8 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/besplatno/novi'
     | '/_authenticated/admin/mediji/$id'
     | '/_authenticated/admin/mediji/novi'
+    | '/_authenticated/admin/paketi/$id'
+    | '/_authenticated/admin/paketi/novi'
     | '/_authenticated/admin/proizvodi/$id'
     | '/_authenticated/admin/proizvodi/novi'
     | '/_authenticated/admin/webinari/$id'
@@ -355,6 +405,7 @@ export interface FileRouteTypes {
     | '/api/public/file/$'
     | '/_authenticated/admin/besplatno/'
     | '/_authenticated/admin/mediji/'
+    | '/_authenticated/admin/paketi/'
     | '/_authenticated/admin/proizvodi/'
     | '/_authenticated/admin/webinari/'
   fileRoutesById: FileRoutesById
@@ -367,6 +418,7 @@ export interface RootRouteChildren {
   PolitikaPrivatnostiRoute: typeof PolitikaPrivatnostiRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UsloviKoriscenjaRoute: typeof UsloviKoriscenjaRoute
+  PaketSlugRoute: typeof PaketSlugRoute
   PrirucnikSlugRoute: typeof PrirucnikSlugRoute
   ApiPublicFileSplatRoute: typeof ApiPublicFileSplatRoute
 }
@@ -428,6 +480,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin'
       preLoaderRoute: typeof AuthenticatedAdminRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/paket/$slug': {
+      id: '/paket/$slug'
+      path: '/paket/$slug'
+      fullPath: '/paket/$slug'
+      preLoaderRoute: typeof PaketSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/prirucnik/$slug': {
       id: '/prirucnik/$slug'
@@ -513,6 +572,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminMedijiNoviRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/paketi/': {
+      id: '/_authenticated/admin/paketi/'
+      path: '/paketi'
+      fullPath: '/admin/paketi/'
+      preLoaderRoute: typeof AuthenticatedAdminPaketiIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/paketi/$id': {
+      id: '/_authenticated/admin/paketi/$id'
+      path: '/paketi/$id'
+      fullPath: '/admin/paketi/$id'
+      preLoaderRoute: typeof AuthenticatedAdminPaketiIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/paketi/novi': {
+      id: '/_authenticated/admin/paketi/novi'
+      path: '/paketi/novi'
+      fullPath: '/admin/paketi/novi'
+      preLoaderRoute: typeof AuthenticatedAdminPaketiNoviRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/proizvodi/': {
       id: '/_authenticated/admin/proizvodi/'
       path: '/proizvodi'
@@ -575,12 +655,15 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminBesplatnoNoviRoute: typeof AuthenticatedAdminBesplatnoNoviRoute
   AuthenticatedAdminMedijiIdRoute: typeof AuthenticatedAdminMedijiIdRoute
   AuthenticatedAdminMedijiNoviRoute: typeof AuthenticatedAdminMedijiNoviRoute
+  AuthenticatedAdminPaketiIdRoute: typeof AuthenticatedAdminPaketiIdRoute
+  AuthenticatedAdminPaketiNoviRoute: typeof AuthenticatedAdminPaketiNoviRoute
   AuthenticatedAdminProizvodiIdRoute: typeof AuthenticatedAdminProizvodiIdRoute
   AuthenticatedAdminProizvodiNoviRoute: typeof AuthenticatedAdminProizvodiNoviRoute
   AuthenticatedAdminWebinariIdRoute: typeof AuthenticatedAdminWebinariIdRoute
   AuthenticatedAdminWebinariNoviRoute: typeof AuthenticatedAdminWebinariNoviRoute
   AuthenticatedAdminBesplatnoIndexRoute: typeof AuthenticatedAdminBesplatnoIndexRoute
   AuthenticatedAdminMedijiIndexRoute: typeof AuthenticatedAdminMedijiIndexRoute
+  AuthenticatedAdminPaketiIndexRoute: typeof AuthenticatedAdminPaketiIndexRoute
   AuthenticatedAdminProizvodiIndexRoute: typeof AuthenticatedAdminProizvodiIndexRoute
   AuthenticatedAdminWebinariIndexRoute: typeof AuthenticatedAdminWebinariIndexRoute
 }
@@ -595,12 +678,15 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminBesplatnoNoviRoute: AuthenticatedAdminBesplatnoNoviRoute,
   AuthenticatedAdminMedijiIdRoute: AuthenticatedAdminMedijiIdRoute,
   AuthenticatedAdminMedijiNoviRoute: AuthenticatedAdminMedijiNoviRoute,
+  AuthenticatedAdminPaketiIdRoute: AuthenticatedAdminPaketiIdRoute,
+  AuthenticatedAdminPaketiNoviRoute: AuthenticatedAdminPaketiNoviRoute,
   AuthenticatedAdminProizvodiIdRoute: AuthenticatedAdminProizvodiIdRoute,
   AuthenticatedAdminProizvodiNoviRoute: AuthenticatedAdminProizvodiNoviRoute,
   AuthenticatedAdminWebinariIdRoute: AuthenticatedAdminWebinariIdRoute,
   AuthenticatedAdminWebinariNoviRoute: AuthenticatedAdminWebinariNoviRoute,
   AuthenticatedAdminBesplatnoIndexRoute: AuthenticatedAdminBesplatnoIndexRoute,
   AuthenticatedAdminMedijiIndexRoute: AuthenticatedAdminMedijiIndexRoute,
+  AuthenticatedAdminPaketiIndexRoute: AuthenticatedAdminPaketiIndexRoute,
   AuthenticatedAdminProizvodiIndexRoute: AuthenticatedAdminProizvodiIndexRoute,
   AuthenticatedAdminWebinariIndexRoute: AuthenticatedAdminWebinariIndexRoute,
 }
@@ -627,6 +713,7 @@ const rootRouteChildren: RootRouteChildren = {
   PolitikaPrivatnostiRoute: PolitikaPrivatnostiRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   UsloviKoriscenjaRoute: UsloviKoriscenjaRoute,
+  PaketSlugRoute: PaketSlugRoute,
   PrirucnikSlugRoute: PrirucnikSlugRoute,
   ApiPublicFileSplatRoute: ApiPublicFileSplatRoute,
 }

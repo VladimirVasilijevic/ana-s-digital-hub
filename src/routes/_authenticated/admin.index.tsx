@@ -9,8 +9,9 @@ export const Route = createFileRoute("/_authenticated/admin/")({
 });
 
 async function loadSummary() {
-  const [products, free, webinars, media, user] = await Promise.all([
+  const [products, bundles, free, webinars, media, user] = await Promise.all([
     supabase.from("products").select("id, is_active"),
+    supabase.from("bundles").select("id, is_active"),
     supabase.from("free_resources").select("id, is_active"),
     supabase.from("webinars").select("id, is_active, title"),
     supabase.from("media_appearances").select("id, is_active"),
@@ -24,6 +25,7 @@ async function loadSummary() {
 
   return {
     products: count(products.data),
+    bundles: count(bundles.data),
     free: count(free.data),
     webinars: count(webinars.data),
     media: count(media.data),
@@ -36,6 +38,7 @@ function Dashboard() {
   const { data } = useQuery({ queryKey: ["admin", "summary"], queryFn: loadSummary });
 
   const stats = [
+    { label: "Paketi", value: data?.bundles, to: "/admin/paketi" as const },
     { label: "Proizvodi", value: data?.products, to: "/admin/proizvodi" as const },
     { label: "Besplatni sadržaj", value: data?.free, to: "/admin/besplatno" as const },
     { label: "Webinari", value: data?.webinars, to: "/admin/webinari" as const },

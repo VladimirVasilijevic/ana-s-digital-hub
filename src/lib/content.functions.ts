@@ -37,8 +37,9 @@ export const getGlobalContent = createServerFn({ method: "GET" }).handler(async 
 /** Everything the homepage renders. */
 export const getHomeContent = createServerFn({ method: "GET" }).handler(async () => {
   const supabase = publicClient();
-  const [products, freeResources, webinar, media, consultation] = await Promise.all([
+  const [products, bundles, freeResources, webinar, media, consultation] = await Promise.all([
     supabase.from("products").select("*").eq("is_active", true).order("created_at", { ascending: false }),
+    supabase.from("bundles").select("*").eq("is_active", true).order("created_at", { ascending: false }),
     supabase.from("free_resources").select("*").eq("is_active", true).order("created_at", { ascending: false }),
     supabase
       .from("webinars")
@@ -53,6 +54,7 @@ export const getHomeContent = createServerFn({ method: "GET" }).handler(async ()
 
   return {
     products: products.data ?? [],
+    bundles: bundles.data ?? [],
     freeResources: freeResources.data ?? [],
     webinar: webinar.data ?? null,
     media: media.data ?? [],
@@ -71,6 +73,31 @@ export const getProductBySlug = createServerFn({ method: "GET" })
       .eq("is_active", true)
       .maybeSingle();
     return product ?? null;
+  });
+
+export const getBundleBySlug = createServerFn({ method: "GET" })
+  .inputValidator((input: { slug: string }) => input)
+  .handler(async ({ data }) => {
+    const supabase = publicClient();
+    const { data: bundle } = await supabase
+      .from("bundles")
+      .select("*")
+      .eq("slug", data.slug)
+      .eq("is_active", true)
+      .maybeSingle();
+    if (!bundle) return null;
+
+    const { data: links } = await supabase
+      .from("bundle_products")
+      .select("position, products(*)")
+      .eq("bundle_id", bundle.id)
+      .order("position", { ascending: true });
+
+    const products = (links ?? [])
+      .map((link) => link.products)
+      .filter((p): p is NonNullable<typeof p> => Boolean(p) && p!.is_active);
+
+    return { bundle, products };
   });
 
 export const getConsultation = createServerFn({ method: "GET" }).handler(async () => {

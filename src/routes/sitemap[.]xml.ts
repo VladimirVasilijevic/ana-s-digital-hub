@@ -41,6 +41,13 @@ export const Route = createFileRoute("/sitemap.xml")({
           for (const row of data ?? []) {
             entries.push({ path: `/prirucnik/${row.slug}`, changefreq: "monthly", priority: "0.9" });
           }
+          const { data: bundles } = await supabase
+            .from("bundles")
+            .select("slug")
+            .eq("is_active", true);
+          for (const row of bundles ?? []) {
+            entries.push({ path: `/paket/${row.slug}`, changefreq: "monthly", priority: "0.9" });
+          }
         } catch {
           // Sitemap still serves the static routes if the database is unreachable.
         }

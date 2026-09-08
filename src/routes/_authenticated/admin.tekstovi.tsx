@@ -19,6 +19,7 @@ const groups: Group[] = [
     fields: [
       { key: "hero.name", label: "Ime / naslov" },
       { key: "hero.tagline", label: "Podnaslov", multiline: true },
+      { key: "cta.bundles", label: "Dugme — Paketi" },
       { key: "cta.products", label: "Dugme — Proizvodi" },
       { key: "cta.consultations", label: "Dugme — Konsultacije" },
       { key: "cta.free", label: "Dugme — Besplatni sadržaj" },
@@ -34,6 +35,13 @@ const groups: Group[] = [
       { key: "about.text", label: "Tekst (jedan pasus po redu)", multiline: true },
       { key: "about.cta_label", label: "Tekst dugmeta" },
       { key: "about.cta_url", label: "Link dugmeta" },
+    ],
+  },
+  {
+    title: "Paketi",
+    fields: [
+      { key: "bundles.title", label: "Naslov sekcije" },
+      { key: "bundles.subtitle", label: "Podnaslov", multiline: true },
     ],
   },
   {

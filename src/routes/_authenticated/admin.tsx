@@ -6,6 +6,7 @@ import logo from "@/assets/logo.png";
 
 const NAV = [
   { to: "/admin", label: "Pregled", exact: true },
+  { to: "/admin/paketi", label: "Paketi", exact: false },
   { to: "/admin/proizvodi", label: "Proizvodi", exact: false },
   { to: "/admin/konsultacije", label: "Konsultacije", exact: false },
   { to: "/admin/besplatno", label: "Besplatni sadržaj", exact: false },

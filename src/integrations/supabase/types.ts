@@ -29,6 +29,90 @@ export type Database = {
         }
         Relationships: []
       }
+      bundle_products: {
+        Row: {
+          bundle_id: string
+          position: number
+          product_id: string
+        }
+        Insert: {
+          bundle_id: string
+          position?: number
+          product_id: string
+        }
+        Update: {
+          bundle_id?: string
+          position?: number
+          product_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bundle_products_bundle_id_fkey"
+            columns: ["bundle_id"]
+            isOneToOne: false
+            referencedRelation: "bundles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bundle_products_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bundles: {
+        Row: {
+          created_at: string
+          detailed_description: string
+          id: string
+          image_url: string | null
+          includes: string[]
+          is_active: boolean
+          learn: string[]
+          price_amount: number | null
+          price_currency: string
+          purchase_instructions: string
+          short_description: string
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          detailed_description?: string
+          id?: string
+          image_url?: string | null
+          includes?: string[]
+          is_active?: boolean
+          learn?: string[]
+          price_amount?: number | null
+          price_currency?: string
+          purchase_instructions?: string
+          short_description?: string
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          detailed_description?: string
+          id?: string
+          image_url?: string | null
+          includes?: string[]
+          is_active?: boolean
+          learn?: string[]
+          price_amount?: number | null
+          price_currency?: string
+          purchase_instructions?: string
+          short_description?: string
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       consultation: {
         Row: {
           created_at: string
