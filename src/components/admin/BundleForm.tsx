@@ -175,8 +175,18 @@ export function BundleForm({ id }: { id?: string }) {
                   </label>
                 ))
               )}
+              <label className="flex items-center gap-3 border-t border-border pt-2 text-[15px]">
+                <input
+                  type="checkbox"
+                  className="h-5 w-5 accent-[hsl(var(--primary))]"
+                  checked={form.include_consultation}
+                  onChange={() => set("include_consultation", !form.include_consultation)}
+                />
+                <span>Uključi konsultaciju</span>
+              </label>
             </div>
           </div>
+
 
           <ListField label="Šta dobijaš" value={form.includes} onChange={(v) => set("includes", v)} />
           <ListField label="Šta ćeš naučiti" value={form.learn} onChange={(v) => set("learn", v)} />

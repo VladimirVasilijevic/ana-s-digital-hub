@@ -78,7 +78,7 @@ export const Route = createFileRoute("/paket/$slug")({
 });
 
 function BundlePage() {
-  const { bundle, products } = Route.useLoaderData();
+  const { bundle, products, consultation } = Route.useLoaderData();
   const image = mediaUrl(bundle.image_url);
   const price =
     bundle.price_amount != null
