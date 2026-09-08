@@ -9,8 +9,9 @@ export const Route = createFileRoute("/_authenticated/admin/")({
 });
 
 async function loadSummary() {
-  const [products, free, webinars, media, user] = await Promise.all([
+  const [products, bundles, free, webinars, media, user] = await Promise.all([
     supabase.from("products").select("id, is_active"),
+    supabase.from("bundles").select("id, is_active"),
     supabase.from("free_resources").select("id, is_active"),
     supabase.from("webinars").select("id, is_active, title"),
     supabase.from("media_appearances").select("id, is_active"),
