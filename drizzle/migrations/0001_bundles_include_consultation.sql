@@ -1,0 +1,1 @@
+ALTER TABLE public.bundles ADD COLUMN include_consultation boolean NOT NULL DEFAULT false;
