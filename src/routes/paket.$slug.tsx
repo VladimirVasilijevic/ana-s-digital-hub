@@ -109,7 +109,7 @@ function BundlePage() {
         </p>
       ) : null}
 
-      {products.length ? (
+      {products.length || consultation ? (
         <section className="mt-8">
           <h2 className="text-xl">Šta paket sadrži</h2>
           <ul className="mt-3 space-y-3">
