@@ -56,6 +56,7 @@ function toForm(bundle: Bundle): FormState {
     price_currency: bundle.price_currency,
     image_url: bundle.image_url,
     is_active: bundle.is_active,
+    include_consultation: bundle.include_consultation,
   };
 }
 
@@ -114,6 +115,7 @@ export function BundleForm({ id }: { id?: string }) {
           price_currency: form.price_currency || "RSD",
           image_url: form.image_url,
           is_active: form.is_active,
+          include_consultation: form.include_consultation,
         },
         productIds,
       );
