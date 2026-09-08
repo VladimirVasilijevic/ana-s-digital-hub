@@ -97,7 +97,18 @@ export const getBundleBySlug = createServerFn({ method: "GET" })
       .map((link) => link.products)
       .filter((p): p is NonNullable<typeof p> => Boolean(p) && p!.is_active);
 
-    return { bundle, products };
+    let consultation = null;
+    if (bundle.include_consultation) {
+      const { data } = await supabase
+        .from("consultation")
+        .select("*")
+        .eq("is_active", true)
+        .limit(1)
+        .maybeSingle();
+      consultation = data ?? null;
+    }
+
+    return { bundle, products, consultation };
   });
 
 export const getConsultation = createServerFn({ method: "GET" }).handler(async () => {

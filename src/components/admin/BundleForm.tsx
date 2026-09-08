@@ -38,6 +38,7 @@ const empty = {
   price_currency: "RSD",
   image_url: null as string | null,
   is_active: true,
+  include_consultation: false,
 };
 
 type FormState = typeof empty;
@@ -55,6 +56,7 @@ function toForm(bundle: Bundle): FormState {
     price_currency: bundle.price_currency,
     image_url: bundle.image_url,
     is_active: bundle.is_active,
+    include_consultation: bundle.include_consultation,
   };
 }
 
@@ -113,6 +115,7 @@ export function BundleForm({ id }: { id?: string }) {
           price_currency: form.price_currency || "RSD",
           image_url: form.image_url,
           is_active: form.is_active,
+          include_consultation: form.include_consultation,
         },
         productIds,
       );
@@ -172,8 +175,18 @@ export function BundleForm({ id }: { id?: string }) {
                   </label>
                 ))
               )}
+              <label className="flex items-center gap-3 border-t border-border pt-2 text-[15px]">
+                <input
+                  type="checkbox"
+                  className="h-5 w-5 accent-[hsl(var(--primary))]"
+                  checked={form.include_consultation}
+                  onChange={() => set("include_consultation", !form.include_consultation)}
+                />
+                <span>Uključi konsultaciju</span>
+              </label>
             </div>
           </div>
+
 
           <ListField label="Šta dobijaš" value={form.includes} onChange={(v) => set("includes", v)} />
           <ListField label="Šta ćeš naučiti" value={form.learn} onChange={(v) => set("learn", v)} />

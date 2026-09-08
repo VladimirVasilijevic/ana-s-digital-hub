@@ -68,6 +68,7 @@ export type Database = {
           detailed_description: string
           id: string
           image_url: string | null
+          include_consultation: boolean
           includes: string[]
           is_active: boolean
           learn: string[]
@@ -84,6 +85,7 @@ export type Database = {
           detailed_description?: string
           id?: string
           image_url?: string | null
+          include_consultation?: boolean
           includes?: string[]
           is_active?: boolean
           learn?: string[]
@@ -100,6 +102,7 @@ export type Database = {
           detailed_description?: string
           id?: string
           image_url?: string | null
+          include_consultation?: boolean
           includes?: string[]
           is_active?: boolean
           learn?: string[]

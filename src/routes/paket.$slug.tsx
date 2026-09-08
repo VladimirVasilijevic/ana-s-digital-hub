@@ -78,7 +78,7 @@ export const Route = createFileRoute("/paket/$slug")({
 });
 
 function BundlePage() {
-  const { bundle, products } = Route.useLoaderData();
+  const { bundle, products, consultation } = Route.useLoaderData();
   const image = mediaUrl(bundle.image_url);
   const price =
     bundle.price_amount != null
@@ -109,7 +109,7 @@ function BundlePage() {
         </p>
       ) : null}
 
-      {products.length ? (
+      {products.length || consultation ? (
         <section className="mt-8">
           <h2 className="text-xl">Šta paket sadrži</h2>
           <ul className="mt-3 space-y-3">
@@ -131,6 +131,21 @@ function BundlePage() {
                 </Button>
               </li>
             ))}
+            {consultation ? (
+              <li className="rounded-2xl border border-border bg-card p-4 shadow-soft">
+                <h3 className="text-base font-semibold">
+                  {consultation.title || "Individualne konsultacije"}
+                </h3>
+                {consultation.short_description ? (
+                  <p className="mt-1 text-[15px] leading-relaxed text-muted-foreground">
+                    {consultation.short_description}
+                  </p>
+                ) : null}
+                <Button asChild variant="link" className="mt-1 h-auto p-0 text-[15px] font-semibold">
+                  <Link to="/konsultacije">Pogledaj detalje →</Link>
+                </Button>
+              </li>
+            ) : null}
           </ul>
         </section>
       ) : null}
