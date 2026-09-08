@@ -38,6 +38,7 @@ const empty = {
   price_currency: "RSD",
   image_url: null as string | null,
   is_active: true,
+  include_consultation: false,
 };
 
 type FormState = typeof empty;
