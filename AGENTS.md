@@ -9,4 +9,4 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Public document previews use Lovable Assets pointers so binary files stay out of the source repository.
+- Public document previews use Lovable Assets pointers resolved against the published Lovable origin so binaries stay out of the repository and links work on external hosting.
