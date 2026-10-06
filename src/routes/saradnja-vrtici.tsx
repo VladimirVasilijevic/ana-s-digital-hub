@@ -337,8 +337,8 @@ function SaradnjaVrticiPage() {
               Jedan od priručnika namenjen je roditeljima koji žele da nauče kako da postave jasnu
               granicu, ostanu smireni i sačuvaju odnos sa detetom.
             </p>
-            <Button asChild variant="hero" size="touch" className="mt-5 w-full sm:w-auto">
-              <span aria-disabled="true">Pogledaj primer priručnika</span>
+            <Button disabled variant="hero" size="touch" className="mt-5 w-full sm:w-auto">
+              Pogledaj primer priručnika
             </Button>
           </div>
         </div>
