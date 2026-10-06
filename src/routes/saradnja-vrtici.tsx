@@ -1,5 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import anaAbout from "@/assets/ana-about.jpg";
+import { createFileRoute } from "@tanstack/react-router";
 import productGranice from "@/assets/product-granice.jpg";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/Section";
@@ -9,7 +8,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useGlobalContent } from "@/lib/site-data";
+import { site } from "@/data/site";
+import { mediaUrl } from "@/lib/media-url";
+import { text, useGlobalContent } from "@/lib/site-data";
 
 export const Route = createFileRoute("/saradnja-vrtici")({
   head: () => ({
@@ -36,7 +37,7 @@ export const Route = createFileRoute("/saradnja-vrtici")({
 });
 
 function SaradnjaVrticiPage() {
-  const { contact } = useGlobalContent();
+  const { contact, texts } = useGlobalContent();
   const email = contact?.email || "kontakt@ana-vaspitac.com";
   const instagramHandle = contact?.instagram_handle || "@ana_vaspitac";
 
@@ -76,7 +77,7 @@ function SaradnjaVrticiPage() {
       <Section id="o-ani" tone="muted" title="Ko stoji iza priručnika?">
         <div className="grid items-center gap-6 md:grid-cols-[1fr_1.4fr]">
           <img
-            src={anaAbout}
+            src={mediaUrl(text(texts, "about.image")) ?? site.about.image}
             alt="Ana Vasilijević, master vaspitač"
             loading="lazy"
             width={768}
@@ -102,9 +103,6 @@ function SaradnjaVrticiPage() {
               </p>
               <p className="mt-2 text-lg font-semibold text-primary">„Dobro, a šta sada da uradim?“</p>
             </blockquote>
-            <Button asChild variant="soft" size="touch" className="mt-5 w-full sm:w-auto">
-              <Link to="/">Pogledaj Ana Vaspitač</Link>
-            </Button>
           </div>
         </div>
       </Section>
@@ -145,13 +143,7 @@ function SaradnjaVrticiPage() {
             </li>
           ))}
         </ol>
-      </Section>
-
-      {/* 4. TEME */}
-      <Section
-        tone="muted"
-        title="O čemu roditelji mogu da čitaju?"
-      >
+        <h3 className="mt-8 text-xl font-semibold">Teme prilagođene svakodnevnim izazovima</h3>
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[
             {
@@ -189,64 +181,43 @@ function SaradnjaVrticiPage() {
         </p>
       </Section>
 
-      {/* 5. ŠTA RODITELJ DOBIJA? */}
-      <Section title="Šta roditelj dobija?">
-        <ul className="grid gap-4 sm:grid-cols-2">
+      {/* 4. KORISTI ZA RODITELJE I VRTIĆ */}
+      <Section tone="muted" title="Šta dobijaju roditelji i vrtić?">
+        <div className="grid gap-5 md:grid-cols-2">
           {[
-            "Jedan novi priručnik svakog meseca",
-            "Konkretne smernice za svakodnevne situacije",
-            "Primere rečenica i načina reagovanja",
-            "Sadržaj koji može da otvori na telefonu kada mu zatreba",
-          ].map((benefit) => (
-            <li
-              key={benefit}
-              className="flex items-start gap-3 rounded-2xl border border-border bg-card p-5 shadow-soft"
-            >
-              <span aria-hidden="true" className="text-lg font-bold text-primary">
-                ✓
-              </span>
-              <span className="text-[15px] font-medium leading-snug">{benefit}</span>
-            </li>
+            {
+              title: "Roditelji dobijaju",
+              items: [
+                "Novi praktičan priručnik svakog meseca",
+                "Konkretne smernice i primere rečenica",
+                "Sadržaj dostupan na telefonu kada im zatreba",
+              ],
+            },
+            {
+              title: "Vrtić dobija",
+              items: [
+                "Dodatnu vrednost za roditelje",
+                "Dodatni prihod od uključenih roditelja",
+                "Gotov sadržaj i jednostavnu implementaciju",
+              ],
+            },
+          ].map((group) => (
+            <div key={group.title} className="rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6">
+              <h3 className="text-lg font-semibold">{group.title}</h3>
+              <ul className="mt-4 space-y-3">
+                {group.items.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[15px] leading-snug">
+                    <span aria-hidden="true" className="font-bold text-primary">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
-        <p className="mt-5 text-[15px] text-muted-foreground">
-          Bez dodatnih predavanja, obaveza i traženja informacija po internetu.
-        </p>
-      </Section>
-
-      {/* 6. ŠTA VRTIĆ DOBIJA? */}
-      <Section tone="muted" title="Šta vaš vrtić dobija?">
-        <p className="max-w-2xl rounded-2xl border border-primary/30 bg-card p-5 text-lg font-semibold leading-snug shadow-soft">
+        </div>
+        <p className="mt-5 text-[15px] font-medium">
           Praktična podrška roditeljima bez dodatnog opterećenja za vaš tim.
         </p>
-        <ul className="mt-6 grid gap-4 sm:grid-cols-2">
-          {[
-            {
-              title: "Dodatnu vrednost za roditelje",
-              text: "Roditeljima nudite praktičnu podršku koja je povezana sa periodom odrastanja njihovog deteta.",
-            },
-            {
-              title: "Dodatni prihod",
-              text: "Vrtić ostvaruje prihod od svakog roditelja koji se uključi u paket.",
-            },
-            {
-              title: "Bez kreiranja sadržaja",
-              text: "Ana priprema priručnike i sadržaj.",
-            },
-            {
-              title: "Jednostavnu implementaciju",
-              text: "Vrtić samo informiše roditelje o mogućnosti i prosleđuje im način prijave.",
-            },
-          ].map((benefit) => (
-            <li
-              key={benefit.title}
-              className="rounded-2xl border border-border bg-card p-5 shadow-soft"
-            >
-              <h3 className="font-semibold">{benefit.title}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{benefit.text}</p>
-            </li>
-          ))}
-        </ul>
       </Section>
 
       {/* 7. KAKO FUNKCIONIŠE? */}
@@ -300,12 +271,9 @@ function SaradnjaVrticiPage() {
               <dd className="text-[15px] font-semibold">400 RSD</dd>
             </div>
           </dl>
-          <div className="mt-6 space-y-2 text-[15px] leading-relaxed text-muted-foreground">
-            <p>
-              Roditelj plaća 1.000 RSD mesečno i svakog meseca dobija novi digitalni priručnik.
-            </p>
-            <p>Od tog iznosa 600 RSD pripada Ani Vaspitač, a 400 RSD vrtiću.</p>
-          </div>
+          <p className="mt-6 text-[15px] leading-relaxed text-muted-foreground">
+            Roditelj svakog meseca dobija novi digitalni priručnik.
+          </p>
         </div>
       </Section>
 
@@ -337,33 +305,12 @@ function SaradnjaVrticiPage() {
       </Section>
 
       {/* 10. ZAŠTO OVAJ MODEL? */}
-      <Section
-        tone="muted"
-        title="Roditeljima često ne treba još informacija. Treba im odgovor na pitanje: šta sada?"
-      >
-        <div className="max-w-2xl space-y-3 text-[15px] leading-relaxed text-muted-foreground">
-          <p>
-            Roditelji dece ranog i predškolskog uzrasta svakodnevno se susreću sa situacijama za
-            koje ne postoji jedno univerzalno rešenje.
-          </p>
-          <p className="text-lg font-medium leading-relaxed text-foreground">
-            Granice.
-            <br />
-            Velike emocije.
-            <br />
-            Odbijanje.
-            <br />
-            Rutine.
-            <br />
-            Samostalnost.
-            <br />
-            Adaptacija.
-          </p>
-          <p>
-            Zato su priručnici napravljeni tako da budu praktični i dostupni onda kada roditelju
-            zaista zatrebaju.
-          </p>
-        </div>
+      <Section tone="muted" title="Praktičan odgovor onda kada je potreban">
+        <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+          Granice, velike emocije, odbijanje, rutine, samostalnost i adaptacija nemaju jedno
+          univerzalno rešenje. Zato su priručnici kratki, praktični i dostupni roditelju kada mu
+          zaista zatrebaju.
+        </p>
       </Section>
 
       {/* 11. KAKO IZGLEDA JEDAN PRIRUČNIK? */}
@@ -391,7 +338,7 @@ function SaradnjaVrticiPage() {
               granicu, ostanu smireni i sačuvaju odnos sa detetom.
             </p>
             <Button asChild variant="hero" size="touch" className="mt-5 w-full sm:w-auto">
-              <Link to="/prirucnik/$slug" params={{ slug: "postavi-granice-bez-svadje" }}>Pogledaj primere priručnika</Link>
+              <span aria-disabled="true">Pogledaj primer priručnika</span>
             </Button>
           </div>
         </div>

@@ -205,6 +205,24 @@ function Home() {
         </div>
       </Section>
 
+      {/* KINDERGARTEN PARTNERSHIP */}
+      <Section
+        id="saradnja"
+        title="Saradnja sa vrtićima"
+        subtitle="Praktična podrška roditeljima — kroz vaš vrtić."
+      >
+        <div className="rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6">
+          <p className="text-[15px] leading-relaxed text-muted-foreground">
+            Dajete roditeljima praktičnu podršku bez dodatnog opterećenja za vaš tim. Roditelji
+            vašeg vrtića svakog meseca dobijaju jedan praktičan digitalni priručnik, a vrtić nema
+            nikakve obaveze oko sadržaja. Detalji ponude i model saradnje su na posebnoj stranici.
+          </p>
+          <Button asChild variant="hero" size="touch" className="mt-4 w-full sm:w-auto">
+            <Link to="/saradnja-vrtici">Saznaj više →</Link>
+          </Button>
+        </div>
+      </Section>
+
       {/* FREE RESOURCES */}
       <Section
         id="besplatno"
@@ -283,24 +301,6 @@ function Home() {
             Uskoro — gostovanja, podkasti i tekstovi biće dodati ovde.
           </p>
         )}
-      </Section>
-
-      {/* KINDERGARTEN PARTNERSHIP */}
-      <Section
-        id="saradnja"
-        title="Saradnja sa vrtićima"
-        subtitle="Praktična podrška roditeljima — kroz vaš vrtić."
-      >
-        <div className="rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6">
-          <p className="text-[15px] leading-relaxed text-muted-foreground">
-            Dajete roditeljima praktičnu podršku bez dodatnog opterećenja za vaš tim. Roditelji
-            vašeg vrtića svakog meseca dobijaju jedan praktičan digitalni priručnik, a vrtić nema
-            nikakve obaveze oko sadržaja. Detalji ponude i model saradnje su na posebnoj stranici.
-          </p>
-          <Button asChild variant="hero" size="touch" className="mt-4 w-full sm:w-auto">
-            <Link to="/saradnja-vrtici">Saznaj više →</Link>
-          </Button>
-        </div>
       </Section>
 
       {/* CONTACT & SOCIAL */}
