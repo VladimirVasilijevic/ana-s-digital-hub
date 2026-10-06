@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as KonsultacijeRouteImport } from './routes/konsultacije'
 import { Route as PolitikaPrivatnostiRouteImport } from './routes/politika-privatnosti'
+import { Route as SaradnjaVrticiRouteImport } from './routes/saradnja-vrtici'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as UsloviKoriscenjaRouteImport } from './routes/uslovi-koriscenja'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
@@ -63,6 +64,11 @@ const KonsultacijeRoute = KonsultacijeRouteImport.update({
 const PolitikaPrivatnostiRoute = PolitikaPrivatnostiRouteImport.update({
   id: '/politika-privatnosti',
   path: '/politika-privatnosti',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SaradnjaVrticiRoute = SaradnjaVrticiRouteImport.update({
+  id: '/saradnja-vrtici',
+  path: '/saradnja-vrtici',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -219,6 +225,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/konsultacije': typeof KonsultacijeRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
+  '/saradnja-vrtici': typeof SaradnjaVrticiRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
@@ -251,6 +258,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/konsultacije': typeof KonsultacijeRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
+  '/saradnja-vrtici': typeof SaradnjaVrticiRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
   '/paket/$slug': typeof PaketSlugRoute
@@ -284,6 +292,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/konsultacije': typeof KonsultacijeRoute
   '/politika-privatnosti': typeof PolitikaPrivatnostiRoute
+  '/saradnja-vrtici': typeof SaradnjaVrticiRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uslovi-koriscenja': typeof UsloviKoriscenjaRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
@@ -318,6 +327,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/konsultacije'
     | '/politika-privatnosti'
+    | '/saradnja-vrtici'
     | '/sitemap.xml'
     | '/uslovi-koriscenja'
     | '/admin'
@@ -350,6 +360,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/konsultacije'
     | '/politika-privatnosti'
+    | '/saradnja-vrtici'
     | '/sitemap.xml'
     | '/uslovi-koriscenja'
     | '/paket/$slug'
@@ -382,6 +393,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/konsultacije'
     | '/politika-privatnosti'
+    | '/saradnja-vrtici'
     | '/sitemap.xml'
     | '/uslovi-koriscenja'
     | '/_authenticated/admin'
@@ -416,6 +428,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   KonsultacijeRoute: typeof KonsultacijeRoute
   PolitikaPrivatnostiRoute: typeof PolitikaPrivatnostiRoute
+  SaradnjaVrticiRoute: typeof SaradnjaVrticiRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UsloviKoriscenjaRoute: typeof UsloviKoriscenjaRoute
   PaketSlugRoute: typeof PaketSlugRoute
@@ -458,6 +471,13 @@ declare module '@tanstack/react-router' {
       path: '/politika-privatnosti'
       fullPath: '/politika-privatnosti'
       preLoaderRoute: typeof PolitikaPrivatnostiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/saradnja-vrtici': {
+      id: '/saradnja-vrtici'
+      path: '/saradnja-vrtici'
+      fullPath: '/saradnja-vrtici'
+      preLoaderRoute: typeof SaradnjaVrticiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -711,6 +731,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   KonsultacijeRoute: KonsultacijeRoute,
   PolitikaPrivatnostiRoute: PolitikaPrivatnostiRoute,
+  SaradnjaVrticiRoute: SaradnjaVrticiRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   UsloviKoriscenjaRoute: UsloviKoriscenjaRoute,
   PaketSlugRoute: PaketSlugRoute,
