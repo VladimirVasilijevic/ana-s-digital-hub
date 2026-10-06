@@ -373,7 +373,7 @@ function SaradnjaVrticiPage() {
             <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
               <img
                 src={productGranice}
-                alt="Priručnik „Postavi granice bez svađe" — naslovna strana"
+                alt="Priručnik „Postavi granice bez svađe“ — naslovna strana"
                 loading="lazy"
                 width={1024}
                 height={1024}
