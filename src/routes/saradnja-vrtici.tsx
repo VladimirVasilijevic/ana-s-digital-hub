@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import productGranice from "@/assets/product-granice.jpg";
+import guidePreview from "@/assets/primer-postavi-granice.pdf.asset.json";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/Section";
 import {
@@ -39,6 +40,8 @@ export const Route = createFileRoute("/saradnja-vrtici")({
 function SaradnjaVrticiPage() {
   const { contact, texts } = useGlobalContent();
   const email = contact?.email || "kontakt@ana-vaspitac.com";
+  const phone = contact?.phone || "";
+  const phoneHref = phone ? `tel:${phone.replace(/[^\d+]/g, "")}` : "";
   const instagramHandle = contact?.instagram_handle || "@ana_vaspitac";
 
   return (
@@ -50,7 +53,7 @@ function SaradnjaVrticiPage() {
             Saradnja sa vrtićima
           </p>
           <h1 className="mt-3 text-3xl leading-tight sm:text-4xl">
-            Praktična podrška roditeljima — kroz vaš vrtić.
+            Praktična podrška roditeljima kroz vaš vrtić.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-[16px] leading-relaxed text-muted-foreground">
             Saradnja za vrtiće koji žele da svojim roditeljima ponude konkretne smernice za
@@ -127,19 +130,22 @@ function SaradnjaVrticiPage() {
         <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
           Svakog meseca
         </h3>
-        <ol className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-4 max-w-2xl space-y-3">
           {[
             "Nova tema",
             "Praktičan digitalni priručnik",
             "Konkretne smernice",
             "Roditelj koristi sadržaj kada mu je potreban",
           ].map((step, i) => (
-            <li
-              key={step}
-              className="rounded-2xl border border-border bg-card p-5 shadow-soft"
-            >
-              <span className="text-sm font-bold text-primary">0{i + 1}</span>
-              <p className="mt-2 text-[15px] font-medium leading-snug">{step}</p>
+            <li key={step} className="flex items-start gap-3 text-[15px] leading-snug">
+              <span
+                aria-hidden="true"
+                className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary"
+              />
+              <p>
+                <span className="mr-2 font-semibold text-primary">0{i + 1}</span>
+                <span className="font-medium">{step}</span>
+              </p>
             </li>
           ))}
         </ol>
@@ -196,6 +202,7 @@ function SaradnjaVrticiPage() {
             {
               title: "Vrtić dobija",
               items: [
+                "Praktična podrška roditeljima bez dodatnog opterećenja za vaš tim",
                 "Dodatnu vrednost za roditelje",
                 "Dodatni prihod od uključenih roditelja",
                 "Gotov sadržaj i jednostavnu implementaciju",
@@ -215,14 +222,11 @@ function SaradnjaVrticiPage() {
             </div>
           ))}
         </div>
-        <p className="mt-5 text-[15px] font-medium">
-          Praktična podrška roditeljima bez dodatnog opterećenja za vaš tim.
-        </p>
       </Section>
 
       {/* 7. KAKO FUNKCIONIŠE? */}
       <Section title="Kako saradnja izgleda u praksi?">
-        <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="relative grid gap-0 sm:grid-cols-2 lg:grid-cols-4">
           {[
             {
               title: "Dogovor",
@@ -241,13 +245,22 @@ function SaradnjaVrticiPage() {
               text: "Ana priprema i dostavlja digitalni priručnik roditeljima.",
             },
           ].map((step, i) => (
-            <li
-              key={step.title}
-              className="relative rounded-2xl border border-border bg-card p-5 shadow-soft"
-            >
-              <span className="text-sm font-bold text-primary">0{i + 1}</span>
-              <h3 className="mt-2 font-semibold">{step.title}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{step.text}</p>
+            <li key={step.title} className="relative flex gap-4 pb-7 last:pb-0 sm:p-4 lg:block lg:pb-4">
+              <div className="relative flex shrink-0 flex-col items-center lg:block">
+                <span className="relative z-10 flex h-9 w-9 items-center justify-center rounded-full border border-primary bg-background text-sm font-bold text-primary">
+                  {i + 1}
+                </span>
+                {i < 3 ? (
+                  <span aria-hidden="true" className="absolute top-9 h-[calc(100%+0.25rem)] w-px bg-border sm:hidden" />
+                ) : null}
+              </div>
+              <div className="min-w-0 lg:mt-4">
+                <h3 className="font-semibold">{step.title}</h3>
+                <p className="mt-1 text-[15px] leading-relaxed text-muted-foreground">{step.text}</p>
+              </div>
+              {i < 3 ? (
+                <span aria-hidden="true" className="absolute left-[calc(50%+1.25rem)] right-[-1.25rem] top-8 hidden h-px bg-border lg:block" />
+              ) : null}
             </li>
           ))}
         </ol>
@@ -259,7 +272,7 @@ function SaradnjaVrticiPage() {
       {/* 8. CENA I MODEL SARADNJE */}
       <Section tone="muted" title="Jednostavan model saradnje">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-4xl font-bold sm:text-5xl">1.000 RSD</p>
+          <p className="text-3xl font-bold sm:text-4xl">1.000 RSD</p>
           <p className="mt-2 text-[15px] font-medium text-muted-foreground">mesečno po roditelju</p>
           <dl className="mx-auto mt-6 max-w-sm rounded-2xl border border-border bg-card p-5 text-left shadow-soft">
             <div className="flex items-center justify-between gap-4 py-1.5">
@@ -337,8 +350,10 @@ function SaradnjaVrticiPage() {
               Jedan od priručnika namenjen je roditeljima koji žele da nauče kako da postave jasnu
               granicu, ostanu smireni i sačuvaju odnos sa detetom.
             </p>
-            <Button disabled variant="hero" size="touch" className="mt-5 w-full sm:w-auto">
-              Pogledaj primer priručnika
+            <Button asChild variant="hero" size="touch" className="mt-5 w-full sm:w-auto">
+              <a href={guidePreview.url} target="_blank" rel="noopener noreferrer">
+                Pogledaj primer priručnika
+              </a>
             </Button>
           </div>
         </div>
@@ -410,6 +425,20 @@ function SaradnjaVrticiPage() {
             <p>Master vaspitač</p>
             <p>Ana Vaspitač</p>
             <p>ana-vaspitac.com</p>
+            <p>
+              Email:{" "}
+              <a href={`mailto:${email}`} className="font-medium text-primary underline-offset-4 hover:underline">
+                {email}
+              </a>
+            </p>
+            {phone ? (
+              <p>
+                Telefon:{" "}
+                <a href={phoneHref} className="font-medium text-primary underline-offset-4 hover:underline">
+                  {phone}
+                </a>
+              </p>
+            ) : null}
             {contact?.instagram_url ? (
               <p>
                 Instagram:{" "}

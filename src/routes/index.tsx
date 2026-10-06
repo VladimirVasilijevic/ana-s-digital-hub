@@ -88,6 +88,9 @@ function Home() {
               <Button asChild variant="quiet" size="touchLg" className="w-full sm:w-auto">
                 <a href="#konsultacije">{text(texts, "cta.consultations", "Konsultacije")}</a>
               </Button>
+              <Button asChild variant="quiet" size="touchLg" className="w-full sm:w-auto">
+                <a href="#saradnja">Saradnja sa vrtićima</a>
+              </Button>
               <Button asChild variant="soft" size="touchLg" className="w-full sm:w-auto">
                 <a href="#besplatno">{text(texts, "cta.free", "Besplatni sadržaj")}</a>
               </Button>
@@ -96,9 +99,6 @@ function Home() {
               </Button>
               <Button asChild variant="quiet" size="touchLg" className="w-full sm:w-auto">
                 <a href="#mediji">{text(texts, "cta.media", "Gde ste me mogli videti?")}</a>
-              </Button>
-              <Button asChild variant="quiet" size="touchLg" className="w-full sm:w-auto">
-                <a href="#saradnja">Saradnja sa vrtićima</a>
               </Button>
             </nav>
           </div>
@@ -209,7 +209,7 @@ function Home() {
       <Section
         id="saradnja"
         title="Saradnja sa vrtićima"
-        subtitle="Praktična podrška roditeljima — kroz vaš vrtić."
+        subtitle="Praktična podrška roditeljima kroz vaš vrtić."
       >
         <div className="rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6">
           <p className="text-[15px] leading-relaxed text-muted-foreground">
