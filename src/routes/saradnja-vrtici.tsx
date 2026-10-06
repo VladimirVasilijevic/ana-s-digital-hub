@@ -391,7 +391,7 @@ function SaradnjaVrticiPage() {
               granicu, ostanu smireni i sačuvaju odnos sa detetom.
             </p>
             <Button asChild variant="hero" size="touch" className="mt-5 w-full sm:w-auto">
-              <Link to="/prirucnik/postavi-granice-bez-svadje">Pogledaj primere priručnika</Link>
+              <Link to="/prirucnik/$slug" params={{ slug: "postavi-granice-bez-svadje" }}>Pogledaj primere priručnika</Link>
             </Button>
           </div>
         </div>
