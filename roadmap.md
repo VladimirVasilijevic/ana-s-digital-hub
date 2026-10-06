@@ -1,5 +1,8 @@
 # Roadmap
 
+- [x] Ispraviti PDF vezu da radi i na sopstvenom domenu.
+- [x] Ukloniti brojeve iz liste „Svakog meseca“, uz zadržavanje tačaka.
+
 - [x] Premestiti „Saradnja sa vrtićima“ odmah posle konsultacija na početnoj.
 - [x] Umereno skratiti i objediniti sadržaj stranice „Saradnja sa vrtićima“.
 - [x] Koristiti isti izvor slike Ane kao u delu „Ko sam ja“.

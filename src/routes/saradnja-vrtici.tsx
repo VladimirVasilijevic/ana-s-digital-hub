@@ -130,25 +130,24 @@ function SaradnjaVrticiPage() {
         <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
           Svakog meseca
         </h3>
-        <ol className="mt-4 max-w-2xl space-y-3">
+        <ul className="mt-4 max-w-2xl space-y-3">
           {[
             "Nova tema",
             "Praktičan digitalni priručnik",
             "Konkretne smernice",
             "Roditelj koristi sadržaj kada mu je potreban",
-          ].map((step, i) => (
+          ].map((step) => (
             <li key={step} className="flex items-start gap-3 text-[15px] leading-snug">
               <span
                 aria-hidden="true"
                 className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary"
               />
               <p>
-                <span className="mr-2 font-semibold text-primary">0{i + 1}</span>
                 <span className="font-medium">{step}</span>
               </p>
             </li>
           ))}
-        </ol>
+        </ul>
         <h3 className="mt-8 text-xl font-semibold">Teme prilagođene svakodnevnim izazovima</h3>
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[
@@ -351,7 +350,7 @@ function SaradnjaVrticiPage() {
               granicu, ostanu smireni i sačuvaju odnos sa detetom.
             </p>
             <Button asChild variant="hero" size="touch" className="mt-5 w-full sm:w-auto">
-              <a href={guidePreview.url} target="_blank" rel="noopener noreferrer">
+              <a href={new URL(guidePreview.url, "https://ana-link-warmth.lovable.app").href} target="_blank" rel="noopener noreferrer">
                 Pogledaj primer priručnika
               </a>
             </Button>
