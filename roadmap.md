@@ -1,5 +1,6 @@
 # Roadmap
 
+- [x] Otvarati PDF primer preko domena sajta kako ga Brave ne bi blokirao.
 - [x] Ispraviti PDF vezu da radi i na sopstvenom domenu.
 - [x] Ukloniti brojeve iz liste „Svakog meseca“, uz zadržavanje tačaka.
 

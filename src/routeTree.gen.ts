@@ -25,6 +25,7 @@ import { Route as AuthenticatedAdminKonsultacijeRouteImport } from './routes/_au
 import { Route as AuthenticatedAdminNalogRouteImport } from './routes/_authenticated/admin.nalog'
 import { Route as AuthenticatedAdminPodesavanjaRouteImport } from './routes/_authenticated/admin.podesavanja'
 import { Route as AuthenticatedAdminTekstoviRouteImport } from './routes/_authenticated/admin.tekstovi'
+import { Route as ApiPublicPrimerPrirucnikaRouteImport } from './routes/api/public/primer-prirucnika'
 import { Route as AuthenticatedAdminBesplatnoIndexRouteImport } from './routes/_authenticated/admin.besplatno.index'
 import { Route as AuthenticatedAdminBesplatnoIdRouteImport } from './routes/_authenticated/admin.besplatno.$id'
 import { Route as AuthenticatedAdminBesplatnoNoviRouteImport } from './routes/_authenticated/admin.besplatno.novi'
@@ -123,6 +124,12 @@ const AuthenticatedAdminTekstoviRoute =
     id: '/tekstovi',
     path: '/tekstovi',
     getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const ApiPublicPrimerPrirucnikaRoute =
+  ApiPublicPrimerPrirucnikaRouteImport.update({
+    id: '/api/public/primer-prirucnika',
+    path: '/api/public/primer-prirucnika',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const AuthenticatedAdminBesplatnoIndexRoute =
   AuthenticatedAdminBesplatnoIndexRouteImport.update({
@@ -235,6 +242,7 @@ export interface FileRoutesByFullPath {
   '/admin/nalog': typeof AuthenticatedAdminNalogRoute
   '/admin/podesavanja': typeof AuthenticatedAdminPodesavanjaRoute
   '/admin/tekstovi': typeof AuthenticatedAdminTekstoviRoute
+  '/api/public/primer-prirucnika': typeof ApiPublicPrimerPrirucnikaRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/admin/besplatno/$id': typeof AuthenticatedAdminBesplatnoIdRoute
   '/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
@@ -267,6 +275,7 @@ export interface FileRoutesByTo {
   '/admin/nalog': typeof AuthenticatedAdminNalogRoute
   '/admin/podesavanja': typeof AuthenticatedAdminPodesavanjaRoute
   '/admin/tekstovi': typeof AuthenticatedAdminTekstoviRoute
+  '/api/public/primer-prirucnika': typeof ApiPublicPrimerPrirucnikaRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/admin/besplatno/$id': typeof AuthenticatedAdminBesplatnoIdRoute
   '/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
@@ -302,6 +311,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/nalog': typeof AuthenticatedAdminNalogRoute
   '/_authenticated/admin/podesavanja': typeof AuthenticatedAdminPodesavanjaRoute
   '/_authenticated/admin/tekstovi': typeof AuthenticatedAdminTekstoviRoute
+  '/api/public/primer-prirucnika': typeof ApiPublicPrimerPrirucnikaRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/admin/besplatno/$id': typeof AuthenticatedAdminBesplatnoIdRoute
   '/_authenticated/admin/besplatno/novi': typeof AuthenticatedAdminBesplatnoNoviRoute
@@ -337,6 +347,7 @@ export interface FileRouteTypes {
     | '/admin/nalog'
     | '/admin/podesavanja'
     | '/admin/tekstovi'
+    | '/api/public/primer-prirucnika'
     | '/admin/'
     | '/admin/besplatno/$id'
     | '/admin/besplatno/novi'
@@ -369,6 +380,7 @@ export interface FileRouteTypes {
     | '/admin/nalog'
     | '/admin/podesavanja'
     | '/admin/tekstovi'
+    | '/api/public/primer-prirucnika'
     | '/admin'
     | '/admin/besplatno/$id'
     | '/admin/besplatno/novi'
@@ -403,6 +415,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/nalog'
     | '/_authenticated/admin/podesavanja'
     | '/_authenticated/admin/tekstovi'
+    | '/api/public/primer-prirucnika'
     | '/_authenticated/admin/'
     | '/_authenticated/admin/besplatno/$id'
     | '/_authenticated/admin/besplatno/novi'
@@ -433,6 +446,7 @@ export interface RootRouteChildren {
   UsloviKoriscenjaRoute: typeof UsloviKoriscenjaRoute
   PaketSlugRoute: typeof PaketSlugRoute
   PrirucnikSlugRoute: typeof PrirucnikSlugRoute
+  ApiPublicPrimerPrirucnikaRoute: typeof ApiPublicPrimerPrirucnikaRoute
   ApiPublicFileSplatRoute: typeof ApiPublicFileSplatRoute
 }
 
@@ -549,6 +563,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/tekstovi'
       preLoaderRoute: typeof AuthenticatedAdminTekstoviRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/api/public/primer-prirucnika': {
+      id: '/api/public/primer-prirucnika'
+      path: '/api/public/primer-prirucnika'
+      fullPath: '/api/public/primer-prirucnika'
+      preLoaderRoute: typeof ApiPublicPrimerPrirucnikaRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin/besplatno/': {
       id: '/_authenticated/admin/besplatno/'
@@ -736,6 +757,7 @@ const rootRouteChildren: RootRouteChildren = {
   UsloviKoriscenjaRoute: UsloviKoriscenjaRoute,
   PaketSlugRoute: PaketSlugRoute,
   PrirucnikSlugRoute: PrirucnikSlugRoute,
+  ApiPublicPrimerPrirucnikaRoute: ApiPublicPrimerPrirucnikaRoute,
   ApiPublicFileSplatRoute: ApiPublicFileSplatRoute,
 }
 export const routeTree = rootRouteImport
