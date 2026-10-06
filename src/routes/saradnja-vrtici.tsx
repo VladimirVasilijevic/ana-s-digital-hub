@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import productGranice from "@/assets/product-granice.jpg";
-import guidePreview from "@/assets/primer-postavi-granice.pdf.asset.json";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/Section";
 import {
@@ -350,7 +349,7 @@ function SaradnjaVrticiPage() {
               granicu, ostanu smireni i sačuvaju odnos sa detetom.
             </p>
             <Button asChild variant="hero" size="touch" className="mt-5 w-full sm:w-auto">
-              <a href={new URL(guidePreview.url, "https://ana-link-warmth.lovable.app").href} target="_blank" rel="noopener noreferrer">
+              <a href="/api/public/primer-prirucnika" target="_blank" rel="noopener noreferrer">
                 Pogledaj primer priručnika
               </a>
             </Button>
